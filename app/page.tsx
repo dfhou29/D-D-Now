@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <h1>D&D now</h1>
-      <Link href="/character/character">New Character</Link>
+      <Link href="/character">New Character</Link>
     </>
   );
 }
