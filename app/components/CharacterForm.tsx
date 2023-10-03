@@ -7,6 +7,7 @@ import {
   loadBackgrounds,
   loadClasses,
   loadAlignments,
+  loadLevels,
 } from "../../helper/loadData";
 
 export default function CharacterForm() {
@@ -14,6 +15,7 @@ export default function CharacterForm() {
   const [background, setBackground] = useState("Random");
   const [rank, setRank] = useState("Random"); // use rank instead of class to avoid reserved key word
   const [alignment, setAlignment] = useState("Random");
+  const [level, setLevel] = useState("Random");
 
   const handleRace = (event) => {
     setRace(event.target.value);
@@ -31,6 +33,10 @@ export default function CharacterForm() {
     setAlignment(event.target.value);
   };
 
+  const handleLevel = (event) => {
+    setLevel(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/gpt", {
@@ -41,8 +47,9 @@ export default function CharacterForm() {
       body: JSON.stringify({
         race: race,
         background: background,
-        class: rank,
+        rank: rank,
         alignment: alignment,
+        level: level,
       }),
     });
   };
@@ -51,6 +58,7 @@ export default function CharacterForm() {
   const backgrounds = loadBackgrounds();
   const classes = loadClasses();
   const alignments = loadAlignments();
+  const levels = loadLevels();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -77,6 +85,12 @@ export default function CharacterForm() {
         selections={alignments}
         value={alignment}
         onChange={handleAlignment}
+      />
+      <FormOption
+        title="level"
+        selections={levels}
+        value={level}
+        onChange={handleLevel}
       />
       <input type="submit" value="Generate" />
     </form>

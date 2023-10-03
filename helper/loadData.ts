@@ -1,7 +1,8 @@
 import races from "../data/races.json";
 import backgrounds from "../data/backgrounds.json";
 import classes from "../data/classes.json";
-import alignments from "../data/classes.json";
+import alignments from "../data/alignments.json";
+import levels from "../data/levels.json";
 
 function loadRaces() {
   return races;
@@ -19,4 +20,8 @@ function loadAlignments() {
   return alignments;
 }
 
-export { loadRaces, loadBackgrounds, loadClasses, loadAlignments };
+function loadLevels() {
+  return levels;
+}
+
+export { loadRaces, loadBackgrounds, loadClasses, loadAlignments, loadLevels };
