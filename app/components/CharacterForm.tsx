@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import FormOption from "./FormOption";
 import {
   loadRaces,
@@ -16,6 +17,8 @@ export default function CharacterForm() {
   const [rank, setRank] = useState("Random"); // use rank instead of class to avoid reserved key word
   const [alignment, setAlignment] = useState("Random");
   const [level, setLevel] = useState("Random");
+
+  const router = useRouter();
 
   const handleRace = (event) => {
     setRace(event.target.value);
@@ -39,7 +42,8 @@ export default function CharacterForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/gpt", {
+
+    const response = await fetch("/api/new-character", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +56,12 @@ export default function CharacterForm() {
         level: level,
       }),
     });
+
+    const character = await response.json();
+    localStorage.removeItem("character");
+    localStorage.setItem("character", JSON.stringify(character));
+
+    router.push("/character/form");
   };
 
   const races = loadRaces();
