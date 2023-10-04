@@ -9,21 +9,23 @@ type FormValues = {
   rank: string; // class
   background: string;
   alignment: string;
-  level: number | string;
-  age: number | string;
+  level: number;
+  age: number;
   height: string;
   weight: string;
   eyes: string;
   skin: string;
   hair: string;
-  strength: number | string;
-  dexterity: number | string;
-  constitution: number | string;
-  intelligence: number | string;
-  wisdom: number | string;
-  charisma: number | string;
-  hitPoints: number | string;
-  hitDice: number | string;
+  abilityScores: {
+    strength: number;
+    dexterity: number;
+    constitution: number;
+    intelligence: number;
+    wisdom: number;
+    charisma: number;
+  };
+  hitPoints: number;
+  hitDice: string;
   proficiencies: string[];
   racialTraits: string[];
   classFeatures: string[];
@@ -85,28 +87,22 @@ export default function CharacterSheet() {
     rank: "", // class
     background: "",
     alignment: "",
-    level: "",
-    age: "",
+    level: 0,
+    age: 0,
     height: "",
     weight: "",
     eyes: "",
     skin: "",
     hair: "",
-    strength: "",
-    dexterity: "",
-    constitution: "",
-    intelligence: "",
-    wisdom: "",
-    charisma: "",
-    hitPoints: "",
+    hitPoints: 0,
     hitDice: "",
     abilityScores: {
-      charisma: "",
-      constitution: "",
-      dexterity: "",
-      intelligence: "",
-      strength: "",
-      wisdom: "",
+      charisma: 0,
+      constitution: 0,
+      dexterity: 0,
+      intelligence: 0,
+      strength: 0,
+      wisdom: 0,
     },
     proficiencies: [""],
     racialTraits: [""],
@@ -120,7 +116,7 @@ export default function CharacterSheet() {
     backstory: "",
   });
 
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
+  const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: character,
   });
 
@@ -135,52 +131,24 @@ export default function CharacterSheet() {
         ...prev,
         ...parsedData,
       }));
+      reset(parsedData);
     } else {
       console.log("localstorage empty");
     }
-  }, []);
-
-  useEffect(() => {
-    const primaryProps: any = [
-      // porps without nested key value pair
-      "name",
-      "race",
-      "rank",
-      "background",
-      "alignment",
-      "level",
-      "age",
-      "height",
-      "weight",
-      "eyes",
-      "skin",
-      "hair",
-      "hitPoints",
-      "hitDice",
-      "proficiencies",
-      "racialTraits",
-      "classFeatures",
-      "equipments",
-      "spells",
-      "personality",
-      "ideals",
-      "bonds",
-      "flaws",
-      "backstory",
-    ];
-
-    primaryProps.forEach((prop) => {
-      setValue(prop, character[prop]);
-    });
-
-    Object.entries(character.abilityScores).forEach(([key, value]) => {
-      (setValue as any)(key, value);
-    });
-  }, [character]);
+  }, [reset]);
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
+        // type conversion before submission
+        data.level = Number(data.level);
+        data.age = Number(data.age);
+        data.hitPoints = Number(data.hitPoints);
+
+        for (const ability in data.abilityScores) {
+          data.abilityScores[ability] = Number(data.abilityScores[ability]);
+        }
+
         console.log(data);
       })}
     >
@@ -221,22 +189,42 @@ export default function CharacterSheet() {
       <input {...register("hair")} id="hair" />
 
       <label htmlFor="strength">Strength </label>
-      <input {...register("strength")} id="strength" type="number" />
+      <input
+        {...register("abilityScores.strength")}
+        id="strength"
+        type="number"
+      />
 
       <label htmlFor="dexterity">Dexterity </label>
-      <input {...register("dexterity")} id="dexterity" type="number" />
+      <input
+        {...register("abilityScores.dexterity")}
+        id="dexterity"
+        type="number"
+      />
 
       <label htmlFor="constitution">Constitution </label>
-      <input {...register("constitution")} id="constitution" type="number" />
+      <input
+        {...register("abilityScores.constitution")}
+        id="constitution"
+        type="number"
+      />
 
       <label htmlFor="intelligence">Intelligence </label>
-      <input {...register("intelligence")} id="intelligence" type="number" />
+      <input
+        {...register("abilityScores.intelligence")}
+        id="intelligence"
+        type="number"
+      />
 
       <label htmlFor="wisdom">Wisdom </label>
-      <input {...register("wisdom")} id="wisdom" type="number" />
+      <input {...register("abilityScores.wisdom")} id="wisdom" type="number" />
 
       <label htmlFor="charisma">Charisma </label>
-      <input {...register("charisma")} id="charisma" type="number" />
+      <input
+        {...register("abilityScores.charisma")}
+        id="charisma"
+        type="number"
+      />
 
       <label htmlFor="hitPoints">Hit Points </label>
       <input {...register("hitPoints")} id="hitPoint" />
