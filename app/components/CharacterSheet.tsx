@@ -30,7 +30,9 @@ type FormValues = {
   racialTraits: string[];
   classFeatures: string[];
   equipments: string[];
-  spells: string[];
+  spells: {
+    [key: string]: string[];
+  };
   personality: string;
   ideals: string;
   bonds: string;
@@ -63,11 +65,11 @@ export default function CharacterSheet() {
       strength: 0,
       wisdom: 0,
     },
-    proficiencies: [""],
-    racialTraits: [""],
-    classFeatures: [""],
-    spells: [""],
-    equipments: [""],
+    proficiencies: [],
+    racialTraits: [],
+    classFeatures: [],
+    spells: {},
+    equipments: [],
     personality: "",
     ideals: "",
     bonds: "",
@@ -75,7 +77,7 @@ export default function CharacterSheet() {
     backstory: "",
   });
 
-  const { register, handleSubmit, reset } = useForm<FormValues>({
+  const { register, handleSubmit, setValue } = useForm<FormValues>({
     defaultValues: character,
   });
 
@@ -85,16 +87,19 @@ export default function CharacterSheet() {
     const localData = localStorage.getItem("character");
     if (localData) {
       const parsedData = JSON.parse(localData);
-      console.log(parsedData);
+
       setCharacter((prev) => ({
         ...prev,
         ...parsedData,
       }));
-      reset(parsedData);
+
+      for (const key in parsedData) {
+        (setValue as any)(key, parsedData[key]);
+      }
     } else {
       console.log("localstorage empty");
     }
-  }, [reset]);
+  }, []);
 
   return (
     <form
@@ -104,12 +109,14 @@ export default function CharacterSheet() {
         data.age = Number(data.age);
         data.hitPoints = Number(data.hitPoints);
 
+        console.log("character before submission: ", character);
+        console.log("data before submission: ", data);
         for (const ability in data.abilityScores) {
           data.abilityScores[ability] = Number(data.abilityScores[ability]);
         }
-
         const reqJSON = JSON.stringify(data);
-        console.log(reqJSON);
+        localStorage.setItem("character", reqJSON);
+        //console.log(reqJSON);
       })}
     >
       <label htmlFor="name">Name </label>
@@ -208,52 +215,53 @@ export default function CharacterSheet() {
       <input {...register("backstory")} id="backstory" />
 
       <OptionCardGroup
-        label="Proficiencies"
-        name="proficiencies"
-        character={character}
-        setCharacter={setCharacter}
-        items={character.proficiencies}
-      />
-
-      <OptionCardGroup
         label="Racial Traits"
-        name="racialTraits"
+        optionName="racialTraits"
         character={character}
         setCharacter={setCharacter}
+        register={register}
+        setValue={setValue}
         items={character.racialTraits}
       />
 
       <OptionCardGroup
         label="Class Features"
-        name="classFeatures"
+        optionName="classFeatures"
         character={character}
         setCharacter={setCharacter}
+        register={register}
+        setValue={setValue}
         items={character.classFeatures}
       />
 
       <OptionCardGroup
         label="Equipments"
-        name="equipments"
+        optionName="equipments"
         character={character}
         setCharacter={setCharacter}
+        register={register}
         items={character.equipments}
+        setValue={setValue}
       />
 
       <OptionCardGroup
         label="Proficiencies"
-        name="proficiencies"
+        optionName="proficiencies"
         character={character}
         setCharacter={setCharacter}
+        register={register}
+        setValue={setValue}
         items={character.proficiencies}
       />
-
+      {/* 
       <OptionCardGroup
         label="Spells"
-        name="spells"
+        optionName="spells"
         character={character}
         setCharacter={setCharacter}
+        register={register}
         items={character.spells}
-      />
+      /> */}
 
       <input type="submit" value="submit" />
     </form>

@@ -33,7 +33,12 @@ Expected JSON Format:
   "racialTraits": ["Trait1", "Trait2", ...],
   "classFeatures": ["Feature1", "Feature2", ...],
   "equipments": ["Equipment1", "Equipment2", ...],
-  "spells": ["Spell1", "Spell2", ...],
+  "spells": {
+    "cantrips": ["Mage Hand", "Prestidigitation", ...],
+    "level1": ["Mage Armor", "Magic Missile", ...],
+    "level2": ["Misty Step", "Scorching Ray", ...],
+    ...up till the level which user select
+  },
   "personality": "Personality Description"(~30 words),
   "ideals": "Ideals Description"(~30 words),
   "bonds": "Bonds Description"(~20 words),
