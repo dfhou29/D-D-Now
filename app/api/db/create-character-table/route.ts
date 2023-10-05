@@ -4,7 +4,8 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   try {
     const result =
-      await sql`CREATE TABLE characters (id SERIAL PRIMARY KEY NOT NULL,
+      await sql`CREATE TABLE characters (
+        id SERIAL PRIMARY KEY NOT NULL,
         name VARCHAR(255) NOT NULL,
         race VARCHAR(255) NOT NULL,
         rank VARCHAR(255) NOT NULL,
