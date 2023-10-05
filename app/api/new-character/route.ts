@@ -1,13 +1,5 @@
 import OpenAI from "openai";
 
-type ChatCompletionRes = {
-  choices: Array<{
-    message: {
-      content: string;
-    };
-  }>;
-};
-
 export async function POST(req: Request) {
   const body = await req.json();
   const { race, background, rank, alignment, level } = body;
@@ -66,10 +58,11 @@ Your Preferences:
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
-    temperature: 0.5,
+    temperature: 0.2,
   });
 
   const response = chatCompletion?.choices[0].message.content;
+  console.log(response);
   const character = response?.replace(/^Output: \s*/, "");
 
   if (character) {

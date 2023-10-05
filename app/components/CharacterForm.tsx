@@ -42,7 +42,7 @@ export default function CharacterForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(`openai request started... at ${Date.now()}`);
     const response = await fetch("/api/new-character", {
       method: "POST",
       headers: {

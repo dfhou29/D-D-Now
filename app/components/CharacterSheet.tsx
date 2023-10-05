@@ -38,47 +38,6 @@ type FormValues = {
   backstory: string;
 };
 
-type Character = {
-  name: string;
-  race: string;
-  rank: string; // class
-  background: string;
-  alignment: string;
-  level: any;
-  age: number;
-  height: string;
-  weight: string;
-  eyes: string;
-  skin: string;
-  hair: string;
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-  hitPoints: string;
-  hitDice: string;
-  proficiencies: string[];
-  racialTraits: string[];
-  classFeatures: string[];
-  equipments: string[];
-  spells: string[];
-  abilityScores: {
-    charisma: number;
-    constitution: number;
-    dexterity: number;
-    intelligence: number;
-    strength: number;
-    wisdom: number;
-  };
-  personality: string;
-  ideals: string;
-  bonds: string;
-  flaws: string;
-  backstory: string;
-};
-
 export default function CharacterSheet() {
   // set up initial states
   const [character, setCharacter] = useState({
@@ -149,7 +108,8 @@ export default function CharacterSheet() {
           data.abilityScores[ability] = Number(data.abilityScores[ability]);
         }
 
-        console.log(data);
+        const reqJSON = JSON.stringify(data);
+        console.log(reqJSON);
       })}
     >
       <label htmlFor="name">Name </label>
