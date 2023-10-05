@@ -1,0 +1,14 @@
+import { sql } from '@vercel/postgres';
+import { NextResponse } from 'next/server';
+ 
+export async function GET(request: Request) {
+  try {
+    const result =
+      await sql`DROP TABLE settings;`;
+    return NextResponse.json({ result }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}
+
+// http://localhost:3000/api/db/drop-setting-table
