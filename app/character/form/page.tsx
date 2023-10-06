@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import CharacterSheet from "../../components/CharacterSheet";
 import CharacterTemplate from "../../components/CharacterTemplate";
 
 export default function NewCharacter() {
@@ -13,7 +11,9 @@ export default function NewCharacter() {
   return (
     <div>
       <h2>Character Sheet</h2>
-      <p>For user to customize based on gpt suggestion</p>
+      <p className="text-center">
+        For user to customize based on gpt suggestion
+      </p>
       <CharacterTemplate />
     </div>
   );

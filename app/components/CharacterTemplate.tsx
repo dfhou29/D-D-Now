@@ -86,10 +86,9 @@ export default function CharacterTemplate() {
     hair: "Hair Color",
   });
 
-  const storedCharacter: any = localStorage.getItem("character");
-  console.log(JSON.parse(storedCharacter));
-
   useEffect(() => {
+    const storedCharacter: any = localStorage.getItem("character");
+    console.log(JSON.parse(storedCharacter));
     if (storedCharacter) {
       const parsedCharacter = JSON.parse(storedCharacter);
       setCharacter(parsedCharacter);

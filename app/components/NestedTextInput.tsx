@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CharacterContext } from "./CharacterTemplate";
 import NestedObject from "./NestedObject";
 
-import { set, unset } from "lodash";
+import { set, unset } from "lodash"; // to set nested obj
 
 export default function NestedTextInput({ label, title }) {
   const { character, setCharacter } = useContext(CharacterContext);
@@ -35,7 +35,7 @@ export default function NestedTextInput({ label, title }) {
 
           return (
             <div key={key}>
-              <label>{key}</label>
+              <label className="">{key}</label>
               {typeof value !== "object" ? (
                 <div>
                   <input
