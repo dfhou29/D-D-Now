@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 export default function OptionCard({
   value,
   handleUpdateItem,
@@ -11,13 +9,13 @@ export default function OptionCard({
   return (
     <div>
       <input
-        // {...register(`${label}[${index}]`)}
+        {...register(`${label}[${index}]`)}
         type="text"
-        value={value}
-        onChange={(event) => handleUpdateItem(event, index)}
+        defaultValue={value}
+        //onChange={(event) => handleUpdateItem(event, index)}
       />
 
-      <button type="button" onClick={() => handleDeleteItem(index)}>
+      <button type="button" onClick={(e) => handleDeleteItem(e, index)}>
         Delete
       </button>
     </div>

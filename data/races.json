@@ -18,7 +18,7 @@
   },
   {
     "optgroup": "Gnome",
-    "option": ["Forest Gnome", "Rock Gnome"]
+    "options": ["Forest Gnome", "Rock Gnome"]
   },
   {
     "options": ["Half-Elf"]
