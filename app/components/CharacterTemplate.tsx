@@ -105,7 +105,10 @@ export default function CharacterTemplate() {
   return (
     <CharacterContext.Provider value={{ setCharacter, character }}>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form
+          className="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center justify-items-center"
+          onSubmit={handleSubmit}
+        >
           <TextInput title="Name" label="name" />
           <TextInput title="Race" label="race" />
           <TextInput title="Rank" label="rank" />

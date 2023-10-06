@@ -11,7 +11,7 @@ export default function NestedObject({
 
         return typeof value === "object" ? (
           <div key={key}>
-            <label>{key}</label>
+            <label className="text-1xl">{key}</label>
             <NestedObject
               obj={value}
               path={currentPath}
@@ -21,8 +21,8 @@ export default function NestedObject({
             {/* <button onClick={() => handleDelete(currentPath)}>Delete</button> */}
           </div>
         ) : (
-          <div key={key}>
-            <label>{key}</label>
+          <div key={key} className="flex flex-row justify-center">
+            <label className="text-1xl">{key}</label>
             <input
               type="text"
               value={value as string}

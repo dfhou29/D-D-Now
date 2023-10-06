@@ -12,9 +12,14 @@ export default function TextInput({ title, label }) {
     }));
   };
   return (
-    <div>
+    <div className="flex flex-row justify-center mb-3 gap-x-4">
       <label htmlFor={label}>{title}</label>
-      <input type="text" value={character[label]} onChange={handleChange} />
+      <input
+        type="text"
+        className="text-center"
+        value={character[label]}
+        onChange={handleChange}
+      />
     </div>
   );
 }

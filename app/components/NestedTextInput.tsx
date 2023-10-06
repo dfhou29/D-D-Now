@@ -35,15 +35,15 @@ export default function NestedTextInput({ label, title }) {
 
           return (
             <div key={key}>
-              <label className="">{key}</label>
+              <label className="text-center">{key}</label>
               {typeof value !== "object" ? (
-                <div>
+                <>
                   <input
                     type="text"
                     value={value as string}
                     onChange={(event) => handleUpdate(event, currentPath)}
                   />
-                </div>
+                </>
               ) : (
                 <NestedObject
                   obj={value}
@@ -60,8 +60,8 @@ export default function NestedTextInput({ label, title }) {
   };
 
   return (
-    <div>
-      <label>{title}</label>
+    <div className="flex flex-col justify-center text-center gap-y-2">
+      <label className="text-2xl">{title}</label>
 
       {/* initialize path array with label */}
       {renderChilds(currentItems, [label])}

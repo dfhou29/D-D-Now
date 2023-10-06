@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import OptionCardGroup from "./OptionCardGroup";
 
@@ -42,7 +42,7 @@ type FormValues = {
 
 export default function CharacterSheet() {
   // set up initial states
-  const [character, setCharacter] = useState({
+  const character = {
     name: "",
     race: "",
     rank: "", // class
@@ -75,31 +75,38 @@ export default function CharacterSheet() {
     bonds: "",
     flaws: "",
     backstory: "",
-  });
+  };
 
-  const { register, handleSubmit, setValue } = useForm<FormValues>({
-    defaultValues: character,
+  const localCharacter = localStorage.getItem("character");
+  const parsedData = localCharacter ? JSON.parse(localCharacter) : {};
+
+  const initialCharacter = { ...character, ...parsedData };
+
+  const { register, handleSubmit, setValue, getValues } = useForm<FormValues>({
+    defaultValues: initialCharacter,
   });
+  console.log("initialcharacter", initialCharacter);
+
+  useEffect(() => {
+    for (const key in parsedData) {
+      (setValue as any)(key, parsedData[key]);
+    }
+  }, []);
 
   // useEffect to update fetch data from local storage to character
 
-  useEffect(() => {
-    const localData = localStorage.getItem("character");
-    if (localData) {
-      const parsedData = JSON.parse(localData);
+  // useEffect(() => {
+  //   const localData = localStorage.getItem("character");
+  //   if (localData) {
+  //     const parsedData = JSON.parse(localData);
 
-      setCharacter((prev) => ({
-        ...prev,
-        ...parsedData,
-      }));
-
-      for (const key in parsedData) {
-        (setValue as any)(key, parsedData[key]);
-      }
-    } else {
-      console.log("localstorage empty");
-    }
-  }, []);
+  //     for (const key in parsedData) {
+  //       (setValue as any)(key, parsedData[key]);
+  //     }
+  //   } else {
+  //     console.log("localstorage empty");
+  //   }
+  // }, []);
 
   return (
     <form
@@ -109,7 +116,6 @@ export default function CharacterSheet() {
         data.age = Number(data.age);
         data.hitPoints = Number(data.hitPoints);
 
-        console.log("character before submission: ", character);
         console.log("data before submission: ", data);
         for (const ability in data.abilityScores) {
           data.abilityScores[ability] = Number(data.abilityScores[ability]);
@@ -217,41 +223,33 @@ export default function CharacterSheet() {
       <OptionCardGroup
         label="Racial Traits"
         optionName="racialTraits"
-        character={character}
-        setCharacter={setCharacter}
         register={register}
         setValue={setValue}
-        items={character.racialTraits}
+        getValues={getValues}
       />
 
       <OptionCardGroup
         label="Class Features"
         optionName="classFeatures"
-        character={character}
-        setCharacter={setCharacter}
         register={register}
         setValue={setValue}
-        items={character.classFeatures}
+        getValues={getValues}
       />
 
       <OptionCardGroup
         label="Equipments"
         optionName="equipments"
-        character={character}
-        setCharacter={setCharacter}
         register={register}
-        items={character.equipments}
         setValue={setValue}
+        getValues={getValues}
       />
 
       <OptionCardGroup
         label="Proficiencies"
         optionName="proficiencies"
-        character={character}
-        setCharacter={setCharacter}
         register={register}
         setValue={setValue}
-        items={character.proficiencies}
+        getValues={getValues}
       />
       {/* 
       <OptionCardGroup
