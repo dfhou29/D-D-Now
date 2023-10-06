@@ -58,9 +58,11 @@ export default function CharacterForm() {
     });
 
     const character = await response.json();
+    console.log("localstorage before clean up", localStorage);
     localStorage.removeItem("character");
-    localStorage.setItem("character", JSON.stringify(character));
+    console.log("localstorage after clean up", localStorage);
 
+    localStorage.setItem("character", JSON.stringify(character));
     router.push("/character/form");
   };
 

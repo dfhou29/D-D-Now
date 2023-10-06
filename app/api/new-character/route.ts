@@ -63,7 +63,7 @@ Your Preferences:
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
-    temperature: 0.2,
+    temperature: 0.5,
   });
 
   const response = chatCompletion?.choices[0].message.content;
