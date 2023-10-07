@@ -81,17 +81,17 @@ export default function CharacterTemplate() {
       //   description: "Description about Armor2",
       // },
     },
-    personality: "Personality Description",
-    ideals: "Ideals Description",
-    bonds: "Bonds Description",
-    flaws: "Flaws Description",
-    backstory: "Character Backstory",
-    age: "Age",
-    height: "Height",
-    weight: "Weight",
-    eyes: "Eye Color",
-    skin: "Skin Tone",
-    hair: "Hair Color",
+    personality: "",
+    ideals: "",
+    bonds: "",
+    flaws: "",
+    backstory: "",
+    age: "",
+    height: "",
+    weight: "",
+    eyes: "",
+    skin: "",
+    hair: "",
   });
 
   useEffect(() => {
@@ -104,6 +104,7 @@ export default function CharacterTemplate() {
   }, []);
 
   const handleSubmit = async (event) => {
+    console.log(character);
     event.preventDefault();
 
     const numberFields = ["level", "age", "hitPoints"];
