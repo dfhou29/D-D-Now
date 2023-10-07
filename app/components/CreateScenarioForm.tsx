@@ -40,13 +40,14 @@ export default function CreateScenarioForm({id}) {
         location: location,
         level: level,
         enemies: enemies,
-        campaign_id: {id},
       }),
     });
 
     const scenario = await response.json();
     localStorage.removeItem("scenario");
     localStorage.setItem("scenario", JSON.stringify(scenario));
+    localStorage.removeItem("campaignId");
+    localStorage.setItem("campaignId", JSON.stringify({id}));
 
     router.push("/scenario/form");
   };

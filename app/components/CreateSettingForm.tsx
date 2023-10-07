@@ -22,13 +22,15 @@ export default function CreateSettingForm({id}) {
       },
       body: JSON.stringify({
         title: title,
-        campaign_id: {id},
       }),
     });
 
     const setting = await response.json();
+    console.log(JSON.stringify(setting));
     localStorage.removeItem("setting");
     localStorage.setItem("setting", JSON.stringify(setting));
+    localStorage.removeItem("campaignId");
+    localStorage.setItem("campaignId", JSON.stringify({id}));
 
     router.push("/setting/form");
   };
