@@ -18,17 +18,22 @@ export default function NestedObject({
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
             />
-            {/* <button onClick={() => handleDelete(currentPath)}>Delete</button> */}
           </div>
         ) : (
           <div key={key} className="flex flex-row justify-center">
             <label className="text-1xl">{key}</label>
-            <input
+            {/* <input
               type="text"
               value={value as string}
               onChange={(event) => handleUpdate(event, currentPath)}
-            />
-            <button onClick={() => handleDelete(currentPath)}>Delete</button>
+            /> */}
+            <p>{value as string}</p>
+            <button
+              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              onClick={() => handleDelete(currentPath)}
+            >
+              Delete
+            </button>
           </div>
         );
       })}
