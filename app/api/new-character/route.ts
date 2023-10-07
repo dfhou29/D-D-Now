@@ -18,7 +18,7 @@ Expected JSON Format:
   "rank": "Character Class",
   "background": "Character Background",
   "alignment": "Character Alignment",
-  "level": Character Level,
+  "level": "Character Level",
   "abilityScores": {
     "strength": Value,
     "dexterity": Value,
@@ -29,21 +29,70 @@ Expected JSON Format:
   },
   "hitPoints": Value,
   "hitDice": "Dice Format",
-  "proficiencies": ["Proficiency1", "Proficiency2", ...],
-  "racialTraits": ["Trait1", "Trait2", ...],
-  "classFeatures": ["Feature1", "Feature2", ...],
-  "equipments": ["Equipment1", "Equipment2", ...],
-  "spells": {
-    "cantrips": ["Mage Hand", "Prestidigitation", ...],
-    "level1": ["Mage Armor", "Magic Missile", ...],
-    "level2": ["Misty Step", "Scorching Ray", ...],
-    ...up till the level which user select
+  "proficiencies": {
+    "Proficiency1": {
+      "description": "Description about Proficiency1",
+    },
+    "Proficiency2": {
+      "description": "Description about Proficiency2",
+
+    }
   },
-  "personality": "Personality Description"(~30 words),
-  "ideals": "Ideals Description"(~30 words),
-  "bonds": "Bonds Description"(~20 words),
-  "flaws": "Flaws Description"(~20 words),
-  "backstory": "Character Backstory"(~30 words),
+  "racialTraits": {
+    "Trait1": {
+      "description": "Description about Trait1",
+    },
+    "Trait2": {
+      "description": "Description about Trait2",
+    }
+  },
+  "classFeatures": {
+    "Feature1": {
+      "description": "Description about Feature1",
+    },
+    "Feature2": {
+      "description": "Description about Feature2",
+    }
+  },
+  "equipments": {
+    "Equipment1": {
+      "description": "Description about Equipment1",
+    },
+    "Equipment2": {
+      "description": "Description about Equipment2",
+    }
+  },
+  "armors": {
+    "Armor1": {
+      "description": "Description about Armor1"
+    },
+    "Armor2": {
+      "description": "Description about Armor2"
+    }
+  },
+  "spells": {
+    "cantrips": {
+      "Mage Hand": {
+        "description": "Description about Mage Hand spell",
+      },
+      "Prestidigitation": {
+        "description": "Description about Prestidigitation spell",
+      }
+    },
+    "level1": {
+      "Mage Armor": {
+        "description": "Description about Mage Armor spell",
+      },
+      "Magic Missile": {
+        "description": "Description about Magic Missile spell",
+      }
+    }
+  },
+  "personality": "Personality Description",
+  "ideals": "Ideals Description",
+  "bonds": "Bonds Description",
+  "flaws": "Flaws Description",
+  "backstory": "Character Backstory",
   "age": "Age",
   "height": "Height",
   "weight": "Weight",
@@ -51,6 +100,7 @@ Expected JSON Format:
   "skin": "Skin Tone",
   "hair": "Hair Color"
 }
+
 
 Your Preferences:
 - Race: ${race}
@@ -63,7 +113,7 @@ Your Preferences:
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
-    temperature: 0.5,
+    temperature: 0.4,
   });
 
   const response = chatCompletion?.choices[0].message.content;
