@@ -73,6 +73,14 @@ export default function CharacterTemplate() {
       //   },
       // },
     },
+    armors: {
+      // Armor1: {
+      //   description: "Description about Armor1",
+      // },
+      // Armor2: {
+      //   description: "Description about Armor2",
+      // },
+    },
     personality: "Personality Description",
     ideals: "Ideals Description",
     bonds: "Bonds Description",
@@ -95,11 +103,45 @@ export default function CharacterTemplate() {
     }
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formJSON = JSON.stringify(character);
-    console.log(character);
+    const numberFields = ["level", "age", "hitPoints"];
+
+    const rawData = { ...character };
+
+    // convert string to number for number field
+    numberFields.forEach((field) => {
+      let values = rawData[field];
+      if (typeof values === "string") {
+        rawData[field] = parseInt(values);
+        console.log(field, rawData[field]);
+      }
+    });
+
+    const generateParams = (data) => {
+      return Object.entries(data)
+        .map(([key, value]) => {
+          if (typeof value === "object") {
+            return `${key}=${encodeURIComponent(JSON.stringify(value))}`;
+          } else if (typeof value === "string" || typeof value === "number") {
+            return `${key}=${encodeURIComponent(value)}`;
+          }
+        })
+        .join("&");
+    };
+
+    const endpoint = `/api/db/add-character?${generateParams(rawData)}`;
+
+    fetch(endpoint, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
@@ -140,6 +182,8 @@ export default function CharacterTemplate() {
           <NestedTextInput title="ClassFeatures" label="classFeatures" />
 
           <NestedTextInput title="Equipments" label="equipments" />
+
+          <NestedTextInput title="Armors" label="armors" />
 
           <button type="submit">Submit</button>
         </form>

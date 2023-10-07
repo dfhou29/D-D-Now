@@ -62,6 +62,14 @@ Expected JSON Format:
       "description": "Description about Equipment2",
     }
   },
+  "armors": {
+    "Armor1": {
+      "description": "Description about Armor1"
+    },
+    "Armor2": {
+      "description": "Description about Armor2"
+    }
+  },
   "spells": {
     "cantrips": {
       "Mage Hand": {
