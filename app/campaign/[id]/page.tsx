@@ -8,7 +8,6 @@ export default async function Campaign({ params, searchParams }: { params: { id:
   let data2 = await sql`SELECT * FROM scenarios WHERE campaign_id = ${id};`;
   const { rows: settings } = data1;
   const { rows: scenarios } = data2;
-  console.log(data1);
   return (
     <>
       <h1>{campaignTitle}</h1>
