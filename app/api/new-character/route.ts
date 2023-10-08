@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   });
 
   const prompt = `
-Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character. Replace placeholders with appropriate values. Output should contain only the JSON object without title.
+Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character. Replace placeholders with appropriate values. Output should be pure JSON.
 
 Expected JSON Format:
 {

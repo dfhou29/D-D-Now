@@ -1,4 +1,10 @@
 import { sql } from "@vercel/postgres";
+//import CharacterPdf from "../../components/CharacterPdf";
+import dynamic from "next/dynamic";
+
+const Pdf = dynamic(() => import("../../components/CharacterPdf"), {
+  ssr: false,
+});
 export default async function CharacterDetail({
   params,
 }: {
@@ -16,6 +22,9 @@ export default async function CharacterDetail({
     <div>
       <p>Page to display pdf</p>
       <p>{params.id}</p>
+      <div className="flex justify-center items-center min-h-screen">
+        <Pdf character={character} />
+      </div>
     </div>
   );
 }
