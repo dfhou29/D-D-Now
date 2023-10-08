@@ -1,7 +1,9 @@
+"use client";
 import { useEffect, useState } from "react";
 import TextInput from "./TextInput";
 import React from "react";
 import NestedTextInput from "./NestedTextInput";
+import { useRouter } from "next/navigation";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
@@ -87,6 +89,8 @@ export default function CharacterTemplate() {
     hair: "",
   });
 
+  const router = useRouter();
+
   useEffect(() => {
     const storedCharacter: any = localStorage.getItem("character");
     console.log(JSON.parse(storedCharacter));
@@ -134,7 +138,13 @@ export default function CharacterTemplate() {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        const { id, user_id } = data;
+        console.log("ID:", id);
+        console.log("User ID:", user_id);
+
+        router.push(`/character/${id}`);
+      })
       .catch((error) => console.error("Error:", error));
   };
 

@@ -39,13 +39,22 @@ export async function GET(request: Request) {
     if (!race) throw new Error("Race required");
     if (!rank) throw new Error("Rank required");
     if (!level) throw new Error("level required");
-    await sql`INSERT INTO characters (name, race, rank, background, alignment, level, armor_class, age, height, weight, eyes, skin, hair, hit_points, hit_dice, ability_scores, proficiencies, racial_traits, class_features, equipments, spells, personality, ideals, bonds, flaws, backstory, user_id) VALUES 
-    (${name}, ${race}, ${rank}, ${background}, ${alignment}, ${level}, ${armor_class}, ${age}, ${height}, ${weight}, ${eyes}, ${skin}, ${hair}, ${hit_points}, ${hit_dice}, ${ability_scores}, ${proficiencies}, ${racial_traits}, ${class_features}, ${equipments}, ${spells}, ${personality}, ${ideals}, ${bonds}, ${flaws}, ${backstory}, ${user_id});`;
+    const result =
+      await sql`INSERT INTO characters (name, race, rank, background, alignment, level, armor_class, age, height, weight, eyes, skin, hair, hit_points, hit_dice, ability_scores, proficiencies, racial_traits, class_features, equipments, spells, personality, ideals, bonds, flaws, backstory, user_id) VALUES 
+    (${name}, ${race}, ${rank}, ${background}, ${alignment}, ${level}, ${armor_class}, ${age}, ${height}, ${weight}, ${eyes}, ${skin}, ${hair}, ${hit_points}, ${hit_dice}, ${ability_scores}, ${proficiencies}, ${racial_traits}, ${class_features}, ${equipments}, ${spells}, ${personality}, ${ideals}, ${bonds}, ${flaws}, ${backstory}, ${user_id})
+    RETURNING id, user_id;`;
+
+    console.log("Insert Result: ", result);
+    const characters = await sql`SELECT * FROM characters;`;
+    return NextResponse.json(
+      {
+        id: result["rows"][0]["id"],
+        user_id: result["rows"][0]["user_id"],
+      },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Error:", error.message);
     return NextResponse.json({ error }, { status: 500 });
   }
-
-  const characters = await sql`SELECT * FROM characters;`;
-  return NextResponse.json({ characters }, { status: 200 });
 }

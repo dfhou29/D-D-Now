@@ -61,7 +61,7 @@ export default function CharacterForm() {
     localStorage.removeItem("character");
     localStorage.setItem("character", JSON.stringify(character));
 
-    router.push("/character/form");
+    router.push("/character/preview");
   };
 
   const races = loadRaces();
