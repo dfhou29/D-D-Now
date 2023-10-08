@@ -2,7 +2,7 @@
 
 import CharacterTemplate from "../../components/CharacterTemplate";
 
-export default function NewCharacter() {
+export default function NewCharacterTemplate() {
   return (
     <div>
       <h2 className="text-center text-4xl">Character Sheet</h2>

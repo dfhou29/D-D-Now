@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   });
 
   const prompt = `
-Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character.
+Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character. Replace placeholders with appropriate values. Output should contain only the JSON object without title.
 
 Expected JSON Format:
 {
@@ -19,6 +19,7 @@ Expected JSON Format:
   "background": "Character Background",
   "alignment": "Character Alignment",
   "level": "Character Level",
+  "armorClass": value,
   "abilityScores": {
     "strength": Value,
     "dexterity": Value,
@@ -30,75 +31,74 @@ Expected JSON Format:
   "hitPoints": Value,
   "hitDice": "Dice Format",
   "proficiencies": {
-    "Proficiency1": {
+    "PLACEHOLDER_PROFICIENCY_NAME": {
       "description": "Description about Proficiency1",
     },
-    "Proficiency2": {
+    "PLACEHOLDER_PROFICIENCY_NAME": {
       "description": "Description about Proficiency2",
 
     }
   },
   "racialTraits": {
-    "Trait1": {
-      "description": "Description about Trait1",
+    "PLACEHOLDER_RACIAL_TRAITS_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     },
-    "Trait2": {
-      "description": "Description about Trait2",
+    "PLACEHOLDER_RACIAL_TRAITS_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     }
   },
   "classFeatures": {
-    "Feature1": {
-      "description": "Description about Feature1",
+    "PLACEHOLDER_CLASS_FEATURE_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     },
-    "Feature2": {
-      "description": "Description about Feature2",
+    "PLACEHOLDER_CLASS_FEATURE_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     }
   },
   "equipments": {
-    "Equipment1": {
-      "description": "Description about Equipment1",
+    "PLACEHOLDER_EQUIPMENT_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     },
-    "Equipment2": {
-      "description": "Description about Equipment2",
-    }
-  },
-  "armors": {
-    "Armor1": {
-      "description": "Description about Armor1"
-    },
-    "Armor2": {
-      "description": "Description about Armor2"
+    "PLACEHOLDER_EQUIPMENT_NAME": {
+      "description": "PLACEHOLDER_DESCRIPTION",
     }
   },
   "spells": {
-    "cantrips": {
-      "Mage Hand": {
-        "description": "Description about Mage Hand spell",
+    "Level "PLACEHOLDER_SPELL_LEVEL"": {
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
       },
-      "Prestidigitation": {
-        "description": "Description about Prestidigitation spell",
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
+      },
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
       }
     },
-    "level1": {
-      "Mage Armor": {
-        "description": "Description about Mage Armor spell",
+    "Level "PLACEHOLDER_SPELL_LEVEL"": {
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
       },
-      "Magic Missile": {
-        "description": "Description about Magic Missile spell",
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
+      },
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
       }
-    }
+    },
+    ....
   },
-  "personality": "Personality Description",
-  "ideals": "Ideals Description",
-  "bonds": "Bonds Description",
-  "flaws": "Flaws Description",
-  "backstory": "Character Backstory",
-  "age": "Age",
-  "height": "Height",
-  "weight": "Weight",
-  "eyes": "Eye Color",
-  "skin": "Skin Tone",
-  "hair": "Hair Color"
+  "personality": "PLACEHOLDER_DESCRIPTION",
+  "ideals": "PLACEHOLDER_DESCRIPTION",
+  "bonds": "PLACEHOLDER_DESCRIPTION",
+  "flaws": "PLACEHOLDER_DESCRIPTION",
+  "backstory": "PLACEHOLDER_DESCRIPTION",
+  "age": "PLACEHOLDER_VALUE",
+  "height": "PLACEHOLDER_HEIGHT",
+  "weight": "PLACEHOLDER_WEIGHT",
+  "eyes": "PLACEHOLDER_COLOR",
+  "skin": "PLACEHOLDER_SKIN",
+  "hair": "PLACEHOLDER_HAIR"
 }
 
 
@@ -112,8 +112,8 @@ Your Preferences:
 
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
-    model: "gpt-3.5-turbo",
-    temperature: 0.4,
+    model: "gpt-4",
+    temperature: 0.5,
   });
 
   const response = chatCompletion?.choices[0].message.content;

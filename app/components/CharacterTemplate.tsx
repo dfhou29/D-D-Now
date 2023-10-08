@@ -13,6 +13,7 @@ export default function CharacterTemplate() {
     background: "",
     alignment: "",
     level: "",
+    armorClass: "",
     abilityScores: {
       strength: "",
       dexterity: "",
@@ -73,14 +74,6 @@ export default function CharacterTemplate() {
       //   },
       // },
     },
-    armors: {
-      // Armor1: {
-      //   description: "Description about Armor1",
-      // },
-      // Armor2: {
-      //   description: "Description about Armor2",
-      // },
-    },
     personality: "",
     ideals: "",
     bonds: "",
@@ -107,7 +100,7 @@ export default function CharacterTemplate() {
     console.log(character);
     event.preventDefault();
 
-    const numberFields = ["level", "age", "hitPoints"];
+    const numberFields = ["level", "age", "hitPoints", "armorClass"];
 
     const rawData = { ...character };
 
@@ -158,6 +151,7 @@ export default function CharacterTemplate() {
           <TextInput title="Background" label="background" />
           <TextInput title="Alignment" label="alignment" />
           <TextInput title="Level" label="level" />
+          <TextInput title="Armor Class" label="armorClass" />
           <TextInput title="Hit Points" label="hitPoints" />
           <TextInput title="Hit Dice" label="hitDice" />
           <TextInput title="Personality" label="personality" />
@@ -183,8 +177,6 @@ export default function CharacterTemplate() {
           <NestedTextInput title="ClassFeatures" label="classFeatures" />
 
           <NestedTextInput title="Equipments" label="equipments" />
-
-          <NestedTextInput title="Armors" label="armors" />
 
           <button type="submit">Submit</button>
         </form>

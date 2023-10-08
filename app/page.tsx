@@ -5,7 +5,9 @@ export default function Page() {
   return (
     <>
       <h1>D&D now</h1>
-      <Link href="/character">New Character</Link>
+      <Link href="/character/new">
+        <button>New Character</button>
+      </Link>
     </>
   );
 }

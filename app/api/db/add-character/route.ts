@@ -11,6 +11,7 @@ export async function GET(request: Request) {
   const rank = searchParams.get("rank");
   const background = searchParams.get("background");
   const alignment = searchParams.get("alignment");
+  const armor_class = searchParams.get("armorClass");
   const level = searchParams.get("level");
   const age = searchParams.get("age");
   const height = searchParams.get("height");
@@ -24,7 +25,6 @@ export async function GET(request: Request) {
   const proficiencies = searchParams.get("proficiencies");
   const racial_traits = searchParams.get("racialTraits");
   const class_features = searchParams.get("classFeatures");
-  const armors = searchParams.get("armors");
   const equipments = searchParams.get("equipments");
   const spells = searchParams.get("spells");
   const personality = searchParams.get("personality");
@@ -39,8 +39,8 @@ export async function GET(request: Request) {
     if (!race) throw new Error("Race required");
     if (!rank) throw new Error("Rank required");
     if (!level) throw new Error("level required");
-    await sql`INSERT INTO characters (name, race, rank, background, alignment, level, age, height, weight, eyes, skin, hair, hit_points, hit_dice, ability_scores, proficiencies, racial_traits, class_features, armors, equipments, spells, personality, ideals, bonds, flaws, backstory, user_id) VALUES 
-    (${name}, ${race}, ${rank}, ${background}, ${alignment}, ${level}, ${age}, ${height}, ${weight}, ${eyes}, ${skin}, ${hair}, ${hit_points}, ${hit_dice}, ${ability_scores}, ${proficiencies}, ${racial_traits}, ${class_features}, ${armors}, ${equipments}, ${spells}, ${personality}, ${ideals}, ${bonds}, ${flaws}, ${backstory}, ${user_id});`;
+    await sql`INSERT INTO characters (name, race, rank, background, alignment, level, armor_class, age, height, weight, eyes, skin, hair, hit_points, hit_dice, ability_scores, proficiencies, racial_traits, class_features, equipments, spells, personality, ideals, bonds, flaws, backstory, user_id) VALUES 
+    (${name}, ${race}, ${rank}, ${background}, ${alignment}, ${level}, ${armor_class}, ${age}, ${height}, ${weight}, ${eyes}, ${skin}, ${hair}, ${hit_points}, ${hit_dice}, ${ability_scores}, ${proficiencies}, ${racial_traits}, ${class_features}, ${equipments}, ${spells}, ${personality}, ${ideals}, ${bonds}, ${flaws}, ${backstory}, ${user_id});`;
   } catch (error) {
     console.error("Error:", error.message);
     return NextResponse.json({ error }, { status: 500 });

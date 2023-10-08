@@ -5,9 +5,10 @@ const Character = () => {
   return (
     <div>
       <h1>List of Created Characters</h1>
-      <button>
-        <Link href={"character/new"}>New Character</Link>
-      </button>
+
+      <Link href={"character/new"}>
+        <button>New Character</button>
+      </Link>
     </div>
   );
 };
