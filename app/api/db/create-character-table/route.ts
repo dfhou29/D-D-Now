@@ -12,9 +12,10 @@ export async function GET(request: Request) {
         background TEXT,
         alignment VARCHAR(255),
         level INTEGER NOT NULL,
-        ability_scores JSONB
+        ability_scores JSONB,
         hit_points INTEGER,
         hit_dice VARCHAR(50),
+        armor_class INTEGER,
         proficiencies JSONB,
         racial_traits JSONB,
         class_features JSONB,

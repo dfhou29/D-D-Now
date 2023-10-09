@@ -8,8 +8,17 @@ export async function POST(req: Request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  const prompt = `Generate a detailed and unique dnd campaign setting in JSON format with a title: ${title} and description. If the title is random provide a title that fits the scenario`;
+    const prompt = `Given the preferences listed below, generate a unique and detailed Dungeons & Dragons setting in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting.
 
+Expected JSON Format:
+{
+  "title": "Scenario title",
+  "description": "Scenario description",
+}
+
+Your Preferences:
+- Title: ${title}
+`;
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-3.5-turbo",
@@ -17,6 +26,17 @@ export async function POST(req: Request) {
     n: 1,
   });
 
-  console.log(chatCompletion.choices);
-  return new Response("OK");
+  const response = chatCompletion?.choices[0].message.content;
+  console.log(response);
+
+  if (response) {
+    return new Response(response, {
+      headers: { "Content-Type": "application/json" },
+    });
+  } else {
+    return new Response("Failed to generate setting.", {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 }

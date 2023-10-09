@@ -13,7 +13,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error }, { status: 500 });
   }
   
-  revalidatePath("/campaign");
+  // revalidatePath("/campaign");
   const campaigns = await sql`SELECT * FROM campaigns;`;
   return NextResponse.json({ campaigns }, { status: 200 });
 }
