@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 export default function CreateScenarioForm({id}) {
   const [title, setTitle] = useState("Random");
-  const [location, setLocation] = useState("Random");
   const [level, setLevel] = useState("Random");
+  const [location, setLocation] = useState("Random");
   const [enemies, setEnemies] = useState("Random");
 
   const router = useRouter();
@@ -15,12 +15,12 @@ export default function CreateScenarioForm({id}) {
     setTitle(event.target.value);
   };
   
-  const handleLocation = (event) => {
-    setLocation(event.target.value);
-  };
-
   const handleLevel = (event) => {
     setLevel(event.target.value);
+  };
+
+  const handleLocation = (event) => {
+    setLocation(event.target.value);
   };
 
   const handleEnemies = (event) => {
@@ -49,12 +49,12 @@ export default function CreateScenarioForm({id}) {
     localStorage.removeItem("campaignId");
     localStorage.setItem("campaignId", JSON.stringify({id}));
 
-    router.push("/scenario/form");
+    router.push("/campaign/scenario/form");
   };
   
   return (
     <form onSubmit={handleSubmit}>
-      <label>Scenario title</label>
+      <label htmlFor="title">Scenario title</label>
       <input
         type="text"
         name="title"
@@ -64,17 +64,7 @@ export default function CreateScenarioForm({id}) {
         required 
       />
 
-      <label>Scenario location</label>
-      <input
-        type="text"
-        name="location"
-        id="location"
-        value={location}
-        onChange={handleLocation}
-        required 
-      />
-
-      <label>Scenario level</label>
+      <label htmlFor="level">Scenario level</label>
       <input
         type="text"
         name="level"
@@ -84,7 +74,17 @@ export default function CreateScenarioForm({id}) {
         required 
       />
 
-      <label>Scenario enemies</label>
+      <label htmlFor="location">Scenario location</label>
+      <input
+        type="text"
+        name="location"
+        id="location"
+        value={location}
+        onChange={handleLocation}
+        required 
+      />
+
+      <label htmlFor="enemies">Scenario enemies</label>
       <input
         type="text"
         name="enemies"
@@ -93,9 +93,7 @@ export default function CreateScenarioForm({id}) {
         onChange={handleEnemies}
         required 
       />
-      <button className="btn-primary" type="submit">
-        Create
-      </button>
+      <button type="submit">Generate</button>
     </form>
   );
 }

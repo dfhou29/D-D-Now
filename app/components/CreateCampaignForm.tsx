@@ -1,12 +1,15 @@
 "use client"
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CreateCampaignForm() {
-  const [name, setName] = useState()
+  const [title, setTitle] = useState("")
 
+  const router = useRouter();
+  
   const handleTitle = (event) => {
-    setName(event.target.value);
+    setTitle(event.target.value);
   };
 
   const handleSubmit = async (event) => {
@@ -16,25 +19,24 @@ export default function CreateCampaignForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name: name}),
+      body: JSON.stringify({title: title}),
     });
 
+    router.push("/campaign");
   };
   
   return (
     <form onSubmit={handleSubmit}>
-      <label>Name your campaign</label>
+      <label htmlFor="title">Name your campaign</label>
       <input
         type="text"
-        name="name"
-        id="name"
-        value={name}
+        name="title"
+        id="title"
+        value={title}
         onChange={handleTitle}
         required 
       />
-      <button className="btn-primary" type="submit">
-        Create
-      </button>
+      <button type="submit">Create</button>
     </form>
   );
 }

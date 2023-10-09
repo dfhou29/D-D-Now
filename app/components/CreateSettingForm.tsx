@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateSettingForm({id}) {
+export default function CreateSettingForm({ id }) {
+  console.log(id);
   const [title, setTitle] = useState("Random");
 
   const router = useRouter();
@@ -30,14 +31,14 @@ export default function CreateSettingForm({id}) {
     localStorage.removeItem("setting");
     localStorage.setItem("setting", JSON.stringify(setting));
     localStorage.removeItem("campaignId");
-    localStorage.setItem("campaignId", JSON.stringify({id}));
+    localStorage.setItem("campaignId", JSON.stringify(id));
 
-    router.push("/setting/form");
+    await router.push("/campaign/setting/form");
   };
   
   return (
     <form onSubmit={handleSubmit}>
-      <label>Setting title</label>
+      <label htmlFor="title">Setting title</label>
       <input
         type="text"
         name="title"
@@ -46,9 +47,7 @@ export default function CreateSettingForm({id}) {
         onChange={handleTitle}
         required
       />
-      <button className="btn-primary" type="submit">
-        Create
-      </button>
+      <button type="submit">Generate</button>
     </form>
   );
 }
