@@ -11,12 +11,13 @@ export default async function Scenario({ params } : { params: { id: number } }) 
           {scenarios.map((scenario) => (
             <li key={scenario.id}>
               <h1>{scenario.title}</h1>
+              <div>{scenario.level}</div>
               <div>{scenario.description}</div>
               <div>{scenario.enemies}</div>
             </li>
           ))}
         </ul>
-      <Link href="/scenario">Back to scenario page</Link>
+      <Link href={`/campaign/${id}`}>Back to campaign page</Link>
     </>
   );
 };

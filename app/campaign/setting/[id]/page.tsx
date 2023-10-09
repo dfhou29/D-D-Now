@@ -15,7 +15,7 @@ export default async function Setting({ params } : { params: { id: number } }) {
             </li>
           ))}
         </ul>
-      <Link href="/setting">Back to setting page</Link>
+      <Link href={`/campaign/${id}`}>Back to campaign page</Link>
     </>
   );
 };
