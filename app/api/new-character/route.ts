@@ -64,6 +64,17 @@ Expected JSON Format:
     }
   },
   "spells": {
+    "Cantrips": {
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
+      },
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
+      },
+      "PLACEHOLDER_SPELL_NAME": {
+        "description": "PLACEHOLDER_DESCRIPTION",
+      }
+    },
     "Level "PLACEHOLDER_SPELL_LEVEL"": {
       "PLACEHOLDER_SPELL_NAME": {
         "description": "PLACEHOLDER_DESCRIPTION",

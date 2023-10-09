@@ -9,6 +9,7 @@ export const CharacterContext = React.createContext<any>(undefined);
 
 export default function CharacterTemplate() {
   const [character, setCharacter] = useState({
+    id: "",
     name: "",
     race: "",
     rank: "",
@@ -93,7 +94,7 @@ export default function CharacterTemplate() {
 
   useEffect(() => {
     const storedCharacter: any = localStorage.getItem("character");
-    console.log(JSON.parse(storedCharacter));
+    console.log("stored character:", JSON.parse(storedCharacter));
     if (storedCharacter) {
       const parsedCharacter = JSON.parse(storedCharacter);
       setCharacter(parsedCharacter);
@@ -101,10 +102,10 @@ export default function CharacterTemplate() {
   }, []);
 
   const handleSubmit = async (event) => {
-    console.log(character);
+    console.log("Charactter when submit", character);
     event.preventDefault();
 
-    const numberFields = ["level", "age", "hitPoints", "armorClass"];
+    const numberFields = ["level", "age", "hitPoints", "armorClass", "id"];
 
     const rawData = { ...character };
 
@@ -129,23 +130,45 @@ export default function CharacterTemplate() {
         .join("&");
     };
 
-    const endpoint = `/api/db/add-character?${generateParams(rawData)}`;
-
-    fetch(endpoint, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        const { id, user_id } = data;
-        console.log("ID:", id);
-        console.log("User ID:", user_id);
-
-        router.push(`/character/${id}`);
+    if (rawData.id) {
+      const searchParams = generateParams(rawData);
+      console.log("update");
+      console.log("update character with id:", rawData.id);
+      console.log("searchParams", searchParams);
+      const endpoint = `/api/db/update-character?${searchParams}`;
+      fetch(endpoint, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
-      .catch((error) => console.error("Error:", error));
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("request passed");
+          console.log("response data:", data);
+          const { id, user_id } = data;
+          localStorage.removeItem("character");
+          router.push(`/character/${id}`);
+        })
+        .catch((error) => console.error("Update Error:", error));
+    } else {
+      console.log("insert");
+      const endpoint = `/api/db/add-character?${generateParams(rawData)}`;
+
+      fetch(endpoint, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const { id, user_id } = data;
+          localStorage.removeItem("character");
+          router.push(`/character/${id}`);
+        })
+        .catch((error) => console.error("Error:", error));
+    }
   };
 
   return (

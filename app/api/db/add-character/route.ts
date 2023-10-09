@@ -39,6 +39,7 @@ export async function GET(request: Request) {
     if (!race) throw new Error("Race required");
     if (!rank) throw new Error("Rank required");
     if (!level) throw new Error("level required");
+
     const result =
       await sql`INSERT INTO characters (name, race, rank, background, alignment, level, armor_class, age, height, weight, eyes, skin, hair, hit_points, hit_dice, ability_scores, proficiencies, racial_traits, class_features, equipments, spells, personality, ideals, bonds, flaws, backstory, user_id) VALUES 
     (${name}, ${race}, ${rank}, ${background}, ${alignment}, ${level}, ${armor_class}, ${age}, ${height}, ${weight}, ${eyes}, ${skin}, ${hair}, ${hit_points}, ${hit_dice}, ${ability_scores}, ${proficiencies}, ${racial_traits}, ${class_features}, ${equipments}, ${spells}, ${personality}, ${ideals}, ${bonds}, ${flaws}, ${backstory}, ${user_id})

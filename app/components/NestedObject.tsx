@@ -75,42 +75,43 @@ export default function NestedObject({ obj, path }) {
 
   return (
     <div>
-      {Object.entries(obj).map(([key, value]) => {
-        const currentPath = [...path, key];
+      {obj &&
+        Object.entries(obj).map(([key, value]) => {
+          const currentPath = [...path, key];
 
-        return typeof value === "object" ? (
-          <div key={key}>
-            <label className="text-2xl">{key}</label>
+          return typeof value === "object" ? (
+            <div key={key}>
+              <label className="text-2xl">{key}</label>
 
-            <NestedObject obj={value} path={currentPath} />
-          </div>
-        ) : (
-          <div key={key} className="flex flex-row justify-center">
-            <label className="text-1xl">{key}</label>
-            {isAtAbilityScoresRoot ? (
-              <input
-                type="text"
-                value={value as string}
-                onChange={(event) => handleUpdate(event, currentPath)}
-              />
-            ) : (
-              <>
+              <NestedObject obj={value} path={currentPath} />
+            </div>
+          ) : (
+            <div key={key} className="flex flex-row justify-center">
+              <label className="text-1xl">{key}</label>
+              {isAtAbilityScoresRoot ? (
                 <input
                   type="text"
                   value={value as string}
                   onChange={(event) => handleUpdate(event, currentPath)}
                 />
-                <button
-                  className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-                  onClick={() => handleDelete()}
-                >
-                  Delete
-                </button>
-              </>
-            )}
-          </div>
-        );
-      })}
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={value as string}
+                    onChange={(event) => handleUpdate(event, currentPath)}
+                  />
+                  <button
+                    className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+                    onClick={() => handleDelete()}
+                  >
+                    Delete
+                  </button>
+                </>
+              )}
+            </div>
+          );
+        })}
       {/* to add new spell level category */}
       {isAtSpellsRoot && (
         <div>
