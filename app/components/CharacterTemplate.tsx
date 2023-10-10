@@ -151,7 +151,7 @@ export default function CharacterTemplate({ user_id }) {
       console.log("update");
       console.log("update character with id:", rawData.id);
       console.log("searchParams", searchParams);
-      const endpoint = `/api/db/update-character?${searchParams}`;
+      const endpoint = `/api/update-character?${searchParams}`;
       fetch(endpoint, {
         method: "GET",
         headers: {
@@ -169,7 +169,7 @@ export default function CharacterTemplate({ user_id }) {
         .catch((error) => console.error("Update Error:", error));
     } else {
       console.log("insert");
-      const endpoint = `/api/db/add-character?${generateParams(rawData)}`;
+      const endpoint = `/api/add-character?${generateParams(rawData)}`;
 
       fetch(endpoint, {
         method: "GET",
