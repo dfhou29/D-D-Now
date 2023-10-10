@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -19,9 +19,9 @@ export default function Navbar() {
   return (
     <>
       <h1>D&D now</h1>
-      <header>
-        <nav>
-          <div>
+      <header className="bg-gray-500 text-white">
+        <nav className=" mx-auto px-4 py-2">
+          <div className="flex justify-between space-x-4">
             <div>
               <Link href="/character">Your Characters</Link>
             </div>

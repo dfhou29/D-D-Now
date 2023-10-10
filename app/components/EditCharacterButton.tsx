@@ -27,5 +27,12 @@ export default function EditCharacter({ character, id }) {
 
     router.push(`/character/${id}/edit`);
   };
-  return <button onClick={handleClick}>Edit</button>;
+  return (
+    <button
+      className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+      onClick={handleClick}
+    >
+      Edit
+    </button>
+  );
 }

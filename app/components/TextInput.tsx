@@ -12,11 +12,16 @@ export default function TextInput({ title, label, onKeyPress, required }) {
     }));
   };
   return (
-    <div className="flex flex-row justify-center mb-3 gap-x-4">
-      <label htmlFor={label}>{title}</label>
+    <div className="flex flex-col justify-center mb-3 gap-x-4">
+      <label
+        className="text-gray-600 text-md font-bold mb-2 self-start capitalize"
+        htmlFor={label}
+      >
+        {title}
+      </label>
       <input
         type="text"
-        className="text-center"
+        className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
         value={character[label]}
         onChange={handleChange}
         onKeyDown={onKeyPress}
