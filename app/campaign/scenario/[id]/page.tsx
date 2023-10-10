@@ -27,11 +27,12 @@ export default async function Scenario({ params }: { params: { id: number } }) {
         </div>
         <Link href={`/campaign/${id}`}>
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full">
-            Back to Campaign
+            Back to Campaigns
           </button>
         </Link>
       </div>
       <p>to do: styling</p>
+      <p>fix back button</p>
     </div>
   );
 }
