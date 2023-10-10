@@ -17,6 +17,7 @@ export default async function CharacterDetail({
   params,
 }: {
   params: { id: string };
+  git;
 }) {
   const id = params.id;
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -15,7 +15,7 @@ export default function CreateScenarioForm() {
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
-  
+
   const handleLevel = (event) => {
     setLevel(event.target.value);
   };
@@ -23,7 +23,7 @@ export default function CreateScenarioForm() {
   const handleDescription = (event) => {
     setDescription(event.target.value);
   };
-  
+
   const handleEnemies = (event) => {
     setEnemies(event.target.value);
   };
@@ -64,47 +64,87 @@ export default function CreateScenarioForm() {
 
     router.push(`/campaign/${campaignId}`);
   };
-  
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Scenario title</label>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        value={title}
-        onChange={handleTitle}
-        required 
-      />
+    <div className="flex flex-col justify-start items-center w-4/5 bg-slate-100 ml-auto mr-auto">
+      <div>
+        <h2 className="mb-8 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
+          Scenario Template
+        </h2>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div className="flex-col flex gap-y-8">
+          <div className="flex-col flex">
+            <label
+              htmlFor="title"
+              className="text-gray-600 text-md font-bold mb-2 self-start"
+            >
+              Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={title}
+              onChange={handleTitle}
+              required
+              className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            />
+          </div>
+          <div className="flex-col flex">
+            <label
+              htmlFor="level"
+              className="text-gray-600 text-md font-bold mb-2 self-start"
+            >
+              Level
+            </label>
+            <input
+              type="text"
+              name="level"
+              id="level"
+              value={level}
+              onChange={handleLevel}
+              className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            />
+          </div>
 
-      <label htmlFor="level">Scenario level</label>
-      <input
-        type="text"
-        name="level"
-        id="level"
-        value={level}
-        onChange={handleLevel}
-      />
+          <label
+            htmlFor="description"
+            className="text-gray-600 text-md font-bold mb-2 self-start"
+          >
+            Description
+          </label>
+          <textarea
+            name="description"
+            id="description"
+            value={description}
+            onChange={handleDescription}
+            required
+            className="block w-96 h-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+          />
 
-      <label htmlFor="description">Scenario description</label>
-      <input
-        type="text"
-        name="description"
-        id="description"
-        value={description}
-        onChange={handleDescription}
-        required 
-      />
-
-      <label htmlFor="enemies">Scenario enemies</label>
-      <input
-        type="text"
-        name="enemies"
-        id="enemies"
-        value={enemies}
-        onChange={handleEnemies}
-      />
-      <button type="submit">Create</button>
-    </form>
+          <label
+            htmlFor="enemies"
+            className="text-gray-600 text-md font-bold mb-2 self-start"
+          >
+            Enemies
+          </label>
+          <input
+            type="text"
+            name="enemies"
+            id="enemies"
+            value={enemies}
+            onChange={handleEnemies}
+            className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full ml-auto mr-auto mb-8"
+          >
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

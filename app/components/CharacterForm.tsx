@@ -73,8 +73,8 @@ export default function CharacterForm() {
   const levels = loadLevels();
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen w-4/5 bg-slate-100 ml-auto mr-auto">
-      <div className="mb-16 text-md font-bold tracking-normal text-gray-600 text-4xl">
+    <div className="flex flex-col justify-start items-center h-screen w-4/5 bg-slate-100 ml-auto mr-auto">
+      <div className="text-md font-bold tracking-normal text-gray-600 text-4xl my-8">
         <h2>Generate Your D&D Character Template</h2>
       </div>
       <div className="mb-8 w-84 text-start text-lg">
