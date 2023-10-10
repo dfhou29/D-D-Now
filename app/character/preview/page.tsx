@@ -5,13 +5,12 @@ import { getCookieData } from "@/helper/getCookieData";
 
 export default function NewCharacterTemplate() {
   const userId = getCookieData().id;
-  console.log("userId is: ", userId);
   return (
-    <div>
-      <h2 className="text-center text-4xl">Character Sheet</h2>
-      <p className="text-center">
-        For user to customize based on gpt suggestion
-      </p>
+    <div className="flex flex-col justify-center items-center w-4/5 bg-slate-100 ml-auto mr-auto">
+      <h2 className="mb-16 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
+        Character Template
+      </h2>
+
       <CharacterTemplate user_id={userId} />
     </div>
   );

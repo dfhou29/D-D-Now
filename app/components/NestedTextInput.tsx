@@ -6,8 +6,10 @@ export default function NestedTextInput({ label, title }) {
   const { character } = useContext(CharacterContext);
 
   return (
-    <div className="flex flex-col justify-center text-center gap-y-2">
-      <label className="text-2xl">{title}</label>
+    <div className="flex flex-col">
+      <label className="text-gray-600 text-xl font-bold mb-2 text-center capitalize">
+        {title}
+      </label>
       <NestedObject obj={character[label]} path={[label]} />
     </div>
   );

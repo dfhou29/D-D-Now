@@ -95,82 +95,109 @@ export default function NestedObject({ obj, path }) {
   };
 
   return (
-    <div>
+    // <div className="flex wrap">
+    <div className="flex flex-col">
       {obj &&
         Object.entries(obj).map(([key, value]) => {
           const currentPath = [...path, key];
 
-          return typeof value === "object" ? (
-            <div key={key}>
-              <label className="text-2xl">{key}</label>
+          return (
+            <div>
+              {typeof value === "object" ? (
+                <div key={key} className="flex flex-col">
+                  {key.includes("Cantrips") || key.includes("Level") ? (
+                    <>
+                      <div className="border-t-2 border-gray-300 my-4 w-full"></div>
+                      <label className="text-xl self-center">{key}</label>
+                    </>
+                  ) : (
+                    <label className="text-gray-600 text-md font-bold mb-2 self-start">
+                      {key}
+                    </label>
+                  )}
 
-              <NestedObject obj={value} path={currentPath} />
-            </div>
-          ) : (
-            <div key={key} className="flex flex-row justify-center">
-              {key !== "description" && (
-                <label className="text-1xl">{key}</label>
-              )}
-              {isAtAbilityScoresRoot ? (
-                <input
-                  onKeyDown={handleKeyPress}
-                  type="text"
-                  value={value as string}
-                  onChange={(event) => handleUpdate(event, currentPath)}
-                />
+                  <NestedObject obj={value} path={currentPath} />
+                </div>
               ) : (
-                <>
-                  {/* <input
-                    onKeyDown={handleKeyPress}
-                    type="text"
-                    value={value as string}
-                    onChange={(event) => handleUpdate(event, currentPath)}
-                  /> */}
-                  <div>{value as string}</div>
-                  <button
-                    type="button"
-                    className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-                    onClick={(event) => handleDelete(event)}
-                  >
-                    Delete
-                  </button>
-                </>
+                <div key={key}>
+                  {key !== "description" && (
+                    <label className="text-gray-600 text-md font-bold mb-2 capitalize">
+                      {key}
+                    </label>
+                  )}
+                  {isAtAbilityScoresRoot ? (
+                    <input
+                      onKeyDown={handleKeyPress}
+                      type="text"
+                      value={value as string}
+                      onChange={(event) => handleUpdate(event, currentPath)}
+                      className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                    />
+                  ) : (
+                    <div className="w-full flex flex-col items-center">
+                      <textarea
+                        onKeyDown={handleKeyPress}
+                        value={value as string}
+                        onChange={(event) => handleUpdate(event, currentPath)}
+                        className="block w-full h-16 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 my-2"
+                      />
+                      <button
+                        type="button"
+                        className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full w-20 my-2 "
+                        onClick={(event) => handleDelete(event)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           );
         })}
       {/* to add new spell level category */}
       {isAtSpellsRoot && (
-        <div>
-          <label>New Level</label>
-          <input
-            onKeyDown={handleKeyPress}
-            type="text"
-            placeholder=""
-            value={newSpellLevel}
-            onChange={(e) => setNewSpellLevel(e.target.value)}
-          />
-          <button
-            className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-            type="button"
-            onClick={(event) => handleAddSpellLevel(event)}
-          >
-            Add Level
-          </button>
-          {errorMessage && <div>{errorMessage}</div>}
+        <div className="flex flex-col">
+          <div className="flex justify-center items-center gap-x-4">
+            <label className="text-gray-600 text-md font-bold mb-2 self-center">
+              New Level (format: Level x)
+            </label>
+            <input
+              onKeyDown={handleKeyPress}
+              type="text"
+              placeholder=""
+              value={newSpellLevel}
+              onChange={(e) => setNewSpellLevel(e.target.value)}
+              className="block bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            />
+            <button
+              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              type="button"
+              onClick={(event) => handleAddSpellLevel(event)}
+            >
+              Add Level
+            </button>
+          </div>
+          {errorMessage && (
+            <div className="text-red-500 text-center">{errorMessage}</div>
+          )}
+          <div className="border-t-2 border-gray-300 my-4 w-full"></div>
         </div>
       )}
       {/* to add new spell under spell -> level */}
       {isAtSpellLevels && (
-        <div>
-          <div>
-            <label>New Spell</label>
+        <div className="flex flex-col justify-center items-center w-full my-12">
+          <div className="flex justify-start items-center gap-x-4 w-full">
+            <label className="text-gray-600 text-md font-bold mb-2">
+              New Spell
+            </label>
             <input
               onKeyDown={handleKeyPress}
               type="text"
               placeholder="Name"
               value={newItemName}
               onChange={(e) => setNewItemName(e.target.value)}
+              className="block w-60 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
             <input
               onKeyDown={handleKeyPress}
@@ -178,6 +205,7 @@ export default function NestedObject({ obj, path }) {
               placeholder="description"
               value={newItemDesc}
               onChange={(e) => setNewItemDesc(e.target.value)}
+              className="block flex-grow bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
 
             <button
@@ -187,12 +215,13 @@ export default function NestedObject({ obj, path }) {
             >
               Add
             </button>
-
-            {errorMessage && <div>{errorMessage}</div>}
           </div>
+          {errorMessage && (
+            <div className="text-red-500 text-center">{errorMessage}</div>
+          )}
           <div>
             <button
-              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 rounded-full my-8"
               type="button"
               onClick={(event) => handleDeleteSpellLevel(event)}
             >
@@ -203,29 +232,39 @@ export default function NestedObject({ obj, path }) {
       )}
       {/* add new name, description into current obj */}
       {!isAtSpellsRoot && !isAtAbilityScoresRoot && isAtRoot && (
-        <div>
-          <label>New Item</label>
-          <input
-            onKeyDown={handleKeyPress}
-            type="text"
-            placeholder="Name"
-            value={newItemName}
-            onChange={(e) => setNewItemName(e.target.value)}
-          />
-          <input
-            onKeyDown={handleKeyPress}
-            type="text"
-            placeholder="description"
-            value={newItemDesc}
-            onChange={(e) => setNewItemDesc(e.target.value)}
-          />
-          <button
-            type="button"
-            onClick={() => handleAddItem(event)}
-            className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-          >
-            Add
-          </button>
+        <div className="flex flex-col justify-center">
+          <div className="flex my-12 gap-x-4">
+            <label className="text-gray-600 text-md font-bold mb-2 self-center">
+              New Item
+            </label>
+            <input
+              onKeyDown={handleKeyPress}
+              type="text"
+              placeholder="Name"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              className="block w-60 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            />
+            <input
+              onKeyDown={handleKeyPress}
+              type="text"
+              placeholder="description"
+              value={newItemDesc}
+              onChange={(e) => setNewItemDesc(e.target.value)}
+              className="block flex-grow bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+            />
+            <button
+              type="button"
+              onClick={() => handleAddItem(event)}
+              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+            >
+              Add
+            </button>
+          </div>
+          {errorMessage && (
+            <div className="text-red-500 text-center">{errorMessage}</div>
+          )}
+          <div className="border-t-2 border-gray-300 my-4 w-full"></div>
         </div>
       )}
     </div>

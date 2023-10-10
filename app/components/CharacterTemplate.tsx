@@ -190,145 +190,221 @@ export default function CharacterTemplate({ user_id }) {
   return (
     <CharacterContext.Provider value={{ setCharacter, character }}>
       <div>
-        <form
-          className="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center justify-items-center"
-          onSubmit={handleSubmit}
-        >
-          <TextInput
-            title="Name"
-            label="name"
-            onKeyPress={handleKeyPress}
-            required={true}
-          />
-          <TextInput
-            title="Race"
-            label="race"
-            onKeyPress={handleKeyPress}
-            required={true}
-          />
-          <TextInput
-            title="Rank"
-            label="rank"
-            onKeyPress={handleKeyPress}
-            required={true}
-          />
-          <TextInput
-            title="Background"
-            label="background"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Alignment"
-            label="alignment"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Level"
-            label="level"
-            onKeyPress={handleKeyPress}
-            required={true}
-          />
-          <TextInput
-            title="Armor Class"
-            label="armorClass"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Hit Points"
-            label="hitPoints"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Hit Dice"
-            label="hitDice"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Personality"
-            label="personality"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Ideals"
-            label="ideals"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Bonds"
-            label="bonds"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Flaws"
-            label="flaws"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Backstory"
-            label="backstory"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Age"
-            label="age"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Height"
-            label="height"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Weight"
-            label="weight"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Eyes"
-            label="eyes"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Skin"
-            label="skin"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
-          <TextInput
-            title="Hair"
-            label="hair"
-            onKeyPress={handleKeyPress}
-            required={false}
-          />
+        <div>
+          <form onSubmit={handleSubmit}>
+            {/* basic info section */}
+            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+              <p>Character Basics</p>
+            </div>
+            <div className="flex flex-row flex-wrap">
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Name"
+                  label="name"
+                  onKeyPress={handleKeyPress}
+                  required={true}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Race"
+                  label="race"
+                  onKeyPress={handleKeyPress}
+                  required={true}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Rank"
+                  label="rank"
+                  onKeyPress={handleKeyPress}
+                  required={true}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Background"
+                  label="background"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Alignment"
+                  label="alignment"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Level"
+                  label="level"
+                  onKeyPress={handleKeyPress}
+                  required={true}
+                />
+              </div>
+            </div>
+            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+              <p>Physical Attributes</p>
+            </div>
+            {/* appearance */}
+            <div className="flex flex-row flex-wrap">
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Age"
+                  label="age"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Height"
+                  label="height"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Weight"
+                  label="weight"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Eyes"
+                  label="eyes"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Skin"
+                  label="skin"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Hair"
+                  label="hair"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+            </div>
+            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+              <p>Defensive Stats</p>
+            </div>
+            <div className="flex flex-row flex-wrap">
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Armor Class"
+                  label="armorClass"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Hit Points"
+                  label="hitPoints"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="w-1/3 p-4">
+                <TextInput
+                  title="Hit Dice"
+                  label="hitDice"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+            </div>
+            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+              <p>Character Insights</p>
+            </div>
+            <div className="flex flex-col">
+              <div className="p-4">
+                <TextInput
+                  title="Personality"
+                  label="personality"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="p-4">
+                <TextInput
+                  title="Ideals"
+                  label="ideals"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="p-4">
+                <TextInput
+                  title="Bonds"
+                  label="bonds"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="p-4">
+                <TextInput
+                  title="Flaws"
+                  label="flaws"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+              <div className="p-4">
+                <TextInput
+                  title="Backstory"
+                  label="backstory"
+                  onKeyPress={handleKeyPress}
+                  required={false}
+                />
+              </div>
+            </div>
 
-          <NestedTextInput title="AbilityScores" label="abilityScores" />
-
-          <NestedTextInput title="Spells" label="spells" />
-
-          <NestedTextInput title="Proficiencies" label="proficiencies" />
-
-          <NestedTextInput title="RacialTraits" label="racialTraits" />
-
-          <NestedTextInput title="ClassFeatures" label="classFeatures" />
-
-          <NestedTextInput title="Equipments" label="equipments" />
-
-          <button type="submit">Submit</button>
-        </form>
+            <div className="flex flex-col">
+              <div className="p-4">
+                <NestedTextInput title="Ability Scores" label="abilityScores" />
+              </div>
+              <div className="p-4">
+                <NestedTextInput title="Spells" label="spells" />
+              </div>
+              <div className="p-4">
+                <NestedTextInput title="Proficiencies" label="proficiencies" />
+              </div>
+              <div className="p-4">
+                <NestedTextInput title="Racial Traits" label="racialTraits" />
+              </div>
+              <div className="p-4">
+                <NestedTextInput title="Class Features" label="classFeatures" />
+              </div>
+              <div className="p-4">
+                <NestedTextInput title="Equipments" label="equipments" />
+              </div>
+            </div>
+            <div className="flex justify-center mb-12">
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </CharacterContext.Provider>
   );
