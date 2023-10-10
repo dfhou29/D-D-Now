@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const router = useRouter();
-    
+
   const handleName = (event) => {
     setName(event.target.value);
   };
@@ -21,7 +21,7 @@ export default function SignupPage() {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/signup", {
@@ -29,12 +29,12 @@ export default function SignupPage() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({name:name, email: email, password: password}),
+      body: JSON.stringify({ name: name, email: email, password: password }),
     });
 
     router.push("/login");
   };
-  
+
   return (
     <div>
       <h2>Signup</h2>
@@ -46,7 +46,7 @@ export default function SignupPage() {
           id="name"
           placeholder="Enter your name"
           onChange={handleName}
-          required 
+          required
         />
         <label htmlFor="email">Email address</label>
         <input
@@ -55,7 +55,7 @@ export default function SignupPage() {
           id="email"
           placeholder="Enter Email"
           onChange={handleEmail}
-          required 
+          required
         />
         <label htmlFor="password">Password</label>
         <input
@@ -64,9 +64,16 @@ export default function SignupPage() {
           id="password"
           placeholder="Password"
           onChange={handlePassword}
-          required 
+          required
         />
-        <button type="submit">Sign Up</button>
+        <button
+          className={
+            "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          }
+          type="submit"
+        >
+          Login
+        </button>
       </form>
     </div>
   );

@@ -3,15 +3,17 @@ import { set, unset } from "lodash";
 import { CharacterContext } from "./CharacterTemplate";
 
 export default function NestedObject({ obj, path }) {
-  const { setCharacter } = useContext(CharacterContext);
   const isAtRoot = [...path].length === 1;
   const isAtAbilityScoresRoot = [...path].slice(-1)[0] === "abilityScores";
   const isAtSpellsRoot = [...path].slice(-1)[0] === "spells";
   const isAtSpellLevels = [...path][0] === "spells" && [...path].length === 2;
+  const { setCharacter } = useContext(CharacterContext);
 
   const [newItemName, setNewItemName] = useState("");
   const [newItemDesc, setNewItemDesc] = useState("");
   const [newSpellLevel, setNewSpellLevel] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -41,6 +43,7 @@ export default function NestedObject({ obj, path }) {
 
   const handleAddItem = (event) => {
     event.preventDefault();
+    setErrorMessage("");
     if (newItemName && newItemDesc) {
       if (isAtSpellLevels) {
         setCharacter((prev) => {
@@ -55,6 +58,10 @@ export default function NestedObject({ obj, path }) {
           return character;
         });
       }
+    } else {
+      setErrorMessage(
+        "Both the item name and description are required. Please fill in both fields."
+      );
     }
     console.log(obj);
     setNewItemName("");
@@ -64,13 +71,17 @@ export default function NestedObject({ obj, path }) {
   const handleAddSpellLevel = (event) => {
     event.preventDefault();
     if (newSpellLevel) {
+      setErrorMessage("");
       setCharacter((prev) => {
         const character = { ...prev };
         set(character, [...path, newSpellLevel], {});
         return character;
       });
+    } else {
+      setErrorMessage(
+        "Level name cannot be empty. Please enter the level name as 'Level x' (e.g. 'Level 1', 'Level 2') or 'Cantrips'."
+      );
     }
-    console.log(obj);
     setNewSpellLevel("");
   };
 
@@ -97,7 +108,9 @@ export default function NestedObject({ obj, path }) {
             </div>
           ) : (
             <div key={key} className="flex flex-row justify-center">
-              <label className="text-1xl">{key}</label>
+              {key !== "description" && (
+                <label className="text-1xl">{key}</label>
+              )}
               {isAtAbilityScoresRoot ? (
                 <input
                   onKeyDown={handleKeyPress}
@@ -107,12 +120,13 @@ export default function NestedObject({ obj, path }) {
                 />
               ) : (
                 <>
-                  <input
+                  {/* <input
                     onKeyDown={handleKeyPress}
                     type="text"
                     value={value as string}
                     onChange={(event) => handleUpdate(event, currentPath)}
-                  />
+                  /> */}
+                  <div>{value as string}</div>
                   <button
                     type="button"
                     className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
@@ -143,35 +157,39 @@ export default function NestedObject({ obj, path }) {
           >
             Add Level
           </button>
+          {errorMessage && <div>{errorMessage}</div>}
         </div>
       )}
       {/* to add new spell under spell -> level */}
       {isAtSpellLevels && (
         <div>
-          <label>New Spell</label>
-          <input
-            onKeyDown={handleKeyPress}
-            type="text"
-            placeholder="Name"
-            value={newItemName}
-            onChange={(e) => setNewItemName(e.target.value)}
-          />
-          <input
-            onKeyDown={handleKeyPress}
-            type="text"
-            placeholder="description"
-            value={newItemDesc}
-            onChange={(e) => setNewItemDesc(e.target.value)}
-          />
+          <div>
+            <label>New Spell</label>
+            <input
+              onKeyDown={handleKeyPress}
+              type="text"
+              placeholder="Name"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+            />
+            <input
+              onKeyDown={handleKeyPress}
+              type="text"
+              placeholder="description"
+              value={newItemDesc}
+              onChange={(e) => setNewItemDesc(e.target.value)}
+            />
 
-          <button
-            type="button"
-            className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-            onClick={(event) => handleAddItem(event)}
-          >
-            Add
-          </button>
+            <button
+              type="button"
+              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              onClick={(event) => handleAddItem(event)}
+            >
+              Add
+            </button>
 
+            {errorMessage && <div>{errorMessage}</div>}
+          </div>
           <div>
             <button
               className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
@@ -183,7 +201,7 @@ export default function NestedObject({ obj, path }) {
           </div>
         </div>
       )}
-      {/* add new name, description into current obj excluding spells */}
+      {/* add new name, description into current obj */}
       {!isAtSpellsRoot && !isAtAbilityScoresRoot && isAtRoot && (
         <div>
           <label>New Item</label>

@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
-export default function CharacterTemplate() {
+export default function CharacterTemplate({ user_id }) {
   const [character, setCharacter] = useState({
     id: "",
+    user_id: "",
     name: "",
     race: "",
     rank: "",
@@ -97,6 +98,7 @@ export default function CharacterTemplate() {
     console.log("stored character:", JSON.parse(storedCharacter));
     if (storedCharacter) {
       const parsedCharacter = JSON.parse(storedCharacter);
+      parsedCharacter["user_id"] = user_id;
       setCharacter(parsedCharacter);
     }
   }, []);
@@ -112,7 +114,14 @@ export default function CharacterTemplate() {
 
     event.preventDefault();
 
-    const numberFields = ["level", "age", "hitPoints", "armorClass", "id"];
+    const numberFields = [
+      "level",
+      "age",
+      "hitPoints",
+      "armorClass",
+      "id",
+      "user_id",
+    ];
 
     const rawData = { ...character };
 
@@ -142,7 +151,7 @@ export default function CharacterTemplate() {
       console.log("update");
       console.log("update character with id:", rawData.id);
       console.log("searchParams", searchParams);
-      const endpoint = `/api/db/update-character?${searchParams}`;
+      const endpoint = `/api/update-character?${searchParams}`;
       fetch(endpoint, {
         method: "GET",
         headers: {
@@ -160,7 +169,7 @@ export default function CharacterTemplate() {
         .catch((error) => console.error("Update Error:", error));
     } else {
       console.log("insert");
-      const endpoint = `/api/db/add-character?${generateParams(rawData)}`;
+      const endpoint = `/api/add-character?${generateParams(rawData)}`;
 
       fetch(endpoint, {
         method: "GET",
@@ -185,66 +194,126 @@ export default function CharacterTemplate() {
           className="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center justify-items-center"
           onSubmit={handleSubmit}
         >
-          <TextInput title="Name" label="name" onKeyPress={handleKeyPress} />
-          <TextInput title="Race" label="race" onKeyPress={handleKeyPress} />
-          <TextInput title="Rank" label="rank" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Name"
+            label="name"
+            onKeyPress={handleKeyPress}
+            required={true}
+          />
+          <TextInput
+            title="Race"
+            label="race"
+            onKeyPress={handleKeyPress}
+            required={true}
+          />
+          <TextInput
+            title="Rank"
+            label="rank"
+            onKeyPress={handleKeyPress}
+            required={true}
+          />
           <TextInput
             title="Background"
             label="background"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Alignment"
             label="alignment"
             onKeyPress={handleKeyPress}
+            required={false}
           />
-          <TextInput title="Level" label="level" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Level"
+            label="level"
+            onKeyPress={handleKeyPress}
+            required={true}
+          />
           <TextInput
             title="Armor Class"
             label="armorClass"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Hit Points"
             label="hitPoints"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Hit Dice"
             label="hitDice"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Personality"
             label="personality"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Ideals"
             label="ideals"
             onKeyPress={handleKeyPress}
+            required={false}
           />
-          <TextInput title="Bonds" label="bonds" onKeyPress={handleKeyPress} />
-          <TextInput title="Flaws" label="flaws" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Bonds"
+            label="bonds"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
+          <TextInput
+            title="Flaws"
+            label="flaws"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
           <TextInput
             title="Backstory"
             label="backstory"
             onKeyPress={handleKeyPress}
+            required={false}
           />
-          <TextInput title="Age" label="age" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Age"
+            label="age"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
           <TextInput
             title="Height"
             label="height"
             onKeyPress={handleKeyPress}
+            required={false}
           />
           <TextInput
             title="Weight"
             label="weight"
             onKeyPress={handleKeyPress}
+            required={false}
           />
-          <TextInput title="Eyes" label="eyes" onKeyPress={handleKeyPress} />
-          <TextInput title="Skin" label="skin" onKeyPress={handleKeyPress} />
-          <TextInput title="Hair" label="hair" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Eyes"
+            label="eyes"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
+          <TextInput
+            title="Skin"
+            label="skin"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
+          <TextInput
+            title="Hair"
+            label="hair"
+            onKeyPress={handleKeyPress}
+            required={false}
+          />
 
           <NestedTextInput title="AbilityScores" label="abilityScores" />
 
