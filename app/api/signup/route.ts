@@ -7,13 +7,13 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { name, email, password } = body;
 
-    const data = await sql`SELECT * FROM users WHERE email = ${email};`;
-    const { rows } = data;
-    const user = rows[0];
+    // const data = await sql`SELECT * FROM users WHERE email = ${email};`;
+    // const { rows } = data;
+    // const user = rows[0];
     
-    if(user) {
-      return NextResponse.json("User already exists", {status: 400});
-    }
+    // if(user) {
+    //   return NextResponse.json("User already exists", {status: 400});
+    // }
 
     //hash password
     const salt = await bcryptjs.genSalt(10);

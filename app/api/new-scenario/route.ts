@@ -15,91 +15,6 @@ Expected JSON Format:
   "title": "Scenario title",
   "level": ${level},
   "description": "Scenario description",
-  "enemies": {
-    "Enemy1 name": {
-      "description": "Description about Enemy1",
-      "enemyCount": "Number of Enemy1",
-      "alignment": "Enemy1 Alignment",
-      "level": "Enemy1 Level",
-      "abilityScores": {
-        "strength": Value,
-        "dexterity": Value,
-        "constitution": Value,
-        "intelligence": Value,
-        "wisdom": Value,
-        "charisma": Value
-      },
-      "hitPoints": Value,
-      "armorClass": Value,
-      "hitPoints": Value,
-      "speed": Value,
-      "attacks": [
-        {
-          "name": attack1 name,
-          "type": attack1 type,
-          "bonus": Value,
-          "damage": attack1 damage
-        },
-        {
-          "name": attack2 name,
-          "type": attack2 type,
-          "bonus": Value,
-          "damage": attack2 damage
-        }
-      ],
-      "spells": {
-        "known": Value,
-        "prepared": Value,
-        "spellcastingAbility": Value,
-        "spellsList": [
-          spell1,
-          spell2,
-          spell3,
-        ]
-      },
-    "Enemy2 name": {
-      "description": "Description about Enemy2",
-      "enemyCount": "Number of Enemy2",
-      "alignment": "Enemy1 Alignment",
-      "level": "Enemy2 Level",
-      "abilityScores": {
-        "strength": Value,
-        "dexterity": Value,
-        "constitution": Value,
-        "intelligence": Value,
-        "wisdom": Value,
-        "charisma": Value
-      },
-      "hitPoints": Value,
-      "armorClass": Value,
-      "hitPoints": Value,
-      "speed": Value,
-      "attacks": [
-        {
-          "name": attack1 name,
-          "type": attack1 type,
-          "bonus": Value,
-          "damage": attack1 damage
-        },
-        {
-          "name": attack2 name,
-          "type": attack2 type,
-          "bonus": Value,
-          "damage": attack2 damage
-        }
-      ],
-      "spells": {
-        "known": Value,
-        "prepared": Value,
-        "spellcastingAbility": Value,
-        "spellsList": [
-          spell1,
-          spell2,
-          spell3,
-        ]
-      }
-    }
-  }
 }
 
 
@@ -111,7 +26,7 @@ Your Preferences:
 
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
     temperature: 0.5,
     n: 1,
   });
