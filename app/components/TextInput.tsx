@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CharacterContext } from "./CharacterTemplate";
 
-export default function TextInput({ title, label, onKeyPress }) {
+export default function TextInput({ title, label, onKeyPress, required }) {
   const { character, setCharacter } = useContext(CharacterContext);
 
   const handleChange = (event) => {
@@ -20,6 +20,7 @@ export default function TextInput({ title, label, onKeyPress }) {
         value={character[label]}
         onChange={handleChange}
         onKeyDown={onKeyPress}
+        required={required}
       />
     </div>
   );
