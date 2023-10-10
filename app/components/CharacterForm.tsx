@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import FormOption from "./FormOption";
 import {
   loadRaces,
   loadBackgrounds,
   loadClasses,
   loadAlignments,
+  loadLevels,
 } from "../../helper/loadData";
 
 export default function CharacterForm() {
@@ -14,6 +16,9 @@ export default function CharacterForm() {
   const [background, setBackground] = useState("Random");
   const [rank, setRank] = useState("Random"); // use rank instead of class to avoid reserved key word
   const [alignment, setAlignment] = useState("Random");
+  const [level, setLevel] = useState("Random");
+
+  const router = useRouter();
 
   const handleRace = (event) => {
     setRace(event.target.value);
@@ -31,9 +36,14 @@ export default function CharacterForm() {
     setAlignment(event.target.value);
   };
 
+  const handleLevel = (event) => {
+    setLevel(event.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/gpt", {
+    console.log(`openai request started... at ${Date.now()}`);
+    const response = await fetch("/api/new-character", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,16 +51,24 @@ export default function CharacterForm() {
       body: JSON.stringify({
         race: race,
         background: background,
-        class: rank,
+        rank: rank,
         alignment: alignment,
+        level: level,
       }),
     });
+
+    const character = await response.json();
+    localStorage.removeItem("character");
+    localStorage.setItem("character", JSON.stringify(character));
+
+    router.push("/character/preview");
   };
 
   const races = loadRaces();
   const backgrounds = loadBackgrounds();
   const classes = loadClasses();
   const alignments = loadAlignments();
+  const levels = loadLevels();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -77,6 +95,12 @@ export default function CharacterForm() {
         selections={alignments}
         value={alignment}
         onChange={handleAlignment}
+      />
+      <FormOption
+        title="level"
+        selections={levels}
+        value={level}
+        onChange={handleLevel}
       />
       <input type="submit" value="Generate" />
     </form>
