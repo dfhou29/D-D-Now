@@ -13,6 +13,12 @@ export default function NestedObject({ obj, path }) {
   const [newItemDesc, setNewItemDesc] = useState("");
   const [newSpellLevel, setNewSpellLevel] = useState("");
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   const handleUpdate = (event, path) => {
     const currentValue = event.target.value;
     console.log("Updating path", path, "with value", currentValue);
@@ -23,7 +29,8 @@ export default function NestedObject({ obj, path }) {
     });
   };
 
-  const handleDelete = () => {
+  const handleDelete = (event) => {
+    event.preventDefault();
     // const upLevelPath = path.slice(0, -1); // go back a level
     setCharacter((prev) => {
       const character = { ...prev };
@@ -32,7 +39,8 @@ export default function NestedObject({ obj, path }) {
     });
   };
 
-  const handleAddItem = () => {
+  const handleAddItem = (event) => {
+    event.preventDefault();
     if (newItemName && newItemDesc) {
       if (isAtSpellLevels) {
         setCharacter((prev) => {
@@ -53,7 +61,8 @@ export default function NestedObject({ obj, path }) {
     setNewItemDesc("");
   };
 
-  const handleAddSpellLevel = () => {
+  const handleAddSpellLevel = (event) => {
+    event.preventDefault();
     if (newSpellLevel) {
       setCharacter((prev) => {
         const character = { ...prev };
@@ -65,7 +74,8 @@ export default function NestedObject({ obj, path }) {
     setNewSpellLevel("");
   };
 
-  const handleDeleteSpellLevel = () => {
+  const handleDeleteSpellLevel = (event) => {
+    event.preventDefault();
     setCharacter((prev) => {
       const character = { ...prev };
       unset(character, path);
@@ -90,6 +100,7 @@ export default function NestedObject({ obj, path }) {
               <label className="text-1xl">{key}</label>
               {isAtAbilityScoresRoot ? (
                 <input
+                  onKeyDown={handleKeyPress}
                   type="text"
                   value={value as string}
                   onChange={(event) => handleUpdate(event, currentPath)}
@@ -97,13 +108,15 @@ export default function NestedObject({ obj, path }) {
               ) : (
                 <>
                   <input
+                    onKeyDown={handleKeyPress}
                     type="text"
                     value={value as string}
                     onChange={(event) => handleUpdate(event, currentPath)}
                   />
                   <button
+                    type="button"
                     className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-                    onClick={() => handleDelete()}
+                    onClick={(event) => handleDelete(event)}
                   >
                     Delete
                   </button>
@@ -117,6 +130,7 @@ export default function NestedObject({ obj, path }) {
         <div>
           <label>New Level</label>
           <input
+            onKeyDown={handleKeyPress}
             type="text"
             placeholder=""
             value={newSpellLevel}
@@ -125,7 +139,7 @@ export default function NestedObject({ obj, path }) {
           <button
             className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
             type="button"
-            onClick={() => handleAddSpellLevel()}
+            onClick={(event) => handleAddSpellLevel(event)}
           >
             Add Level
           </button>
@@ -136,12 +150,14 @@ export default function NestedObject({ obj, path }) {
         <div>
           <label>New Spell</label>
           <input
+            onKeyDown={handleKeyPress}
             type="text"
             placeholder="Name"
             value={newItemName}
             onChange={(e) => setNewItemName(e.target.value)}
           />
           <input
+            onKeyDown={handleKeyPress}
             type="text"
             placeholder="description"
             value={newItemDesc}
@@ -151,7 +167,7 @@ export default function NestedObject({ obj, path }) {
           <button
             type="button"
             className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-            onClick={() => handleAddItem()}
+            onClick={(event) => handleAddItem(event)}
           >
             Add
           </button>
@@ -160,7 +176,7 @@ export default function NestedObject({ obj, path }) {
             <button
               className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
               type="button"
-              onClick={() => handleDeleteSpellLevel()}
+              onClick={(event) => handleDeleteSpellLevel(event)}
             >
               Delete Level
             </button>
@@ -172,12 +188,14 @@ export default function NestedObject({ obj, path }) {
         <div>
           <label>New Item</label>
           <input
+            onKeyDown={handleKeyPress}
             type="text"
             placeholder="Name"
             value={newItemName}
             onChange={(e) => setNewItemName(e.target.value)}
           />
           <input
+            onKeyDown={handleKeyPress}
             type="text"
             placeholder="description"
             value={newItemDesc}
@@ -185,7 +203,7 @@ export default function NestedObject({ obj, path }) {
           />
           <button
             type="button"
-            onClick={() => handleAddItem()}
+            onClick={() => handleAddItem(event)}
             className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
           >
             Add

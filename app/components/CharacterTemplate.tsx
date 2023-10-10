@@ -101,8 +101,15 @@ export default function CharacterTemplate() {
     }
   }, []);
 
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
+
   const handleSubmit = async (event) => {
     console.log("Charactter when submit", character);
+
     event.preventDefault();
 
     const numberFields = ["level", "age", "hitPoints", "armorClass", "id"];
@@ -178,26 +185,66 @@ export default function CharacterTemplate() {
           className="bg-slate-100 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col justify-center justify-items-center"
           onSubmit={handleSubmit}
         >
-          <TextInput title="Name" label="name" />
-          <TextInput title="Race" label="race" />
-          <TextInput title="Rank" label="rank" />
-          <TextInput title="Background" label="background" />
-          <TextInput title="Alignment" label="alignment" />
-          <TextInput title="Level" label="level" />
-          <TextInput title="Armor Class" label="armorClass" />
-          <TextInput title="Hit Points" label="hitPoints" />
-          <TextInput title="Hit Dice" label="hitDice" />
-          <TextInput title="Personality" label="personality" />
-          <TextInput title="Ideals" label="ideals" />
-          <TextInput title="Bonds" label="bonds" />
-          <TextInput title="Flaws" label="flaws" />
-          <TextInput title="Backstory" label="backstory" />
-          <TextInput title="Age" label="age" />
-          <TextInput title="Height" label="height" />
-          <TextInput title="Weight" label="weight" />
-          <TextInput title="Eyes" label="eyes" />
-          <TextInput title="Skin" label="skin" />
-          <TextInput title="Hair" label="hair" />
+          <TextInput title="Name" label="name" onKeyPress={handleKeyPress} />
+          <TextInput title="Race" label="race" onKeyPress={handleKeyPress} />
+          <TextInput title="Rank" label="rank" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Background"
+            label="background"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Alignment"
+            label="alignment"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput title="Level" label="level" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Armor Class"
+            label="armorClass"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Hit Points"
+            label="hitPoints"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Hit Dice"
+            label="hitDice"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Personality"
+            label="personality"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Ideals"
+            label="ideals"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput title="Bonds" label="bonds" onKeyPress={handleKeyPress} />
+          <TextInput title="Flaws" label="flaws" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Backstory"
+            label="backstory"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput title="Age" label="age" onKeyPress={handleKeyPress} />
+          <TextInput
+            title="Height"
+            label="height"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput
+            title="Weight"
+            label="weight"
+            onKeyPress={handleKeyPress}
+          />
+          <TextInput title="Eyes" label="eyes" onKeyPress={handleKeyPress} />
+          <TextInput title="Skin" label="skin" onKeyPress={handleKeyPress} />
+          <TextInput title="Hair" label="hair" onKeyPress={handleKeyPress} />
 
           <NestedTextInput title="AbilityScores" label="abilityScores" />
 

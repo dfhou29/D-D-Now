@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-
+export const revalidate = 0;
 const Character = () => {
   return (
     <div>

@@ -1,5 +1,5 @@
 "use client";
-
+export const revalidate = 0;
 import CharacterTemplate from "../../components/CharacterTemplate";
 
 export default function NewCharacterTemplate() {
