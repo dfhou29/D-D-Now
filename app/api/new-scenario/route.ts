@@ -116,6 +116,18 @@ Your Preferences:
     n: 1,
   });
 
-  console.log(chatCompletion.choices);
-  return new Response("OK");
+  const response = chatCompletion?.choices[0].message.content;
+  const scenario = response?.replace(/^Output: \s*/, "");
+  console.log(response);
+  
+  if (response) {
+    return new Response(scenario, {
+      headers: { "Content-Type": "application/json" },
+    });
+  } else {
+    return new Response("Failed to generate scenario.", {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 }

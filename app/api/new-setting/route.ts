@@ -21,16 +21,17 @@ Your Preferences:
 `;
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
-    model: "gpt-3.5-turbo",
+    model: "gpt-4",
     temperature: 0.5,
     n: 1,
   });
 
   const response = chatCompletion?.choices[0].message.content;
+  const setting = response?.replace(/^Output: \s*/, "");
   console.log(response);
 
-  if (response) {
-    return new Response(response, {
+  if (setting) {
+    return new Response(setting, {
       headers: { "Content-Type": "application/json" },
     });
   } else {
