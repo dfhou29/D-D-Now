@@ -1,10 +1,8 @@
 "use client"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { getCookieData } from "@/helper/getCookieData";
 
 export default function Navbar() {
-  const username = getCookieData().name;
   const router = useRouter();
 
   const logout = async () => {
@@ -35,9 +33,6 @@ export default function Navbar() {
             </div>
             <div>
               <Link href="/signup">Signup</Link>
-            </div>
-            <div>
-              <div>Logged in as: ${username}</div>
             </div>
             <div>
               <button onClick={logout}>Logout</button>
