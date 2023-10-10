@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateCampaignForm() {
+export default function CreateCampaignForm({userId}) {
   const [title, setTitle] = useState("")
 
   const router = useRouter();
@@ -19,7 +19,7 @@ export default function CreateCampaignForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({title: title}),
+      body: JSON.stringify({title: title, userId: userId}),
     });
 
     router.push("/campaign");

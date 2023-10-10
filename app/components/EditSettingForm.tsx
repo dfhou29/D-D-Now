@@ -21,14 +21,14 @@ export default function CreateSettingForm() {
   useEffect(() => {
     const storedSetting: any = localStorage.getItem("setting");
     const storedCampaignId: any = localStorage.getItem("campaignId");
-    console.log(JSON.parse(storedSetting));
-    console.log(JSON.parse(storedCampaignId));
     if (storedCampaignId) {
       const parsedCampaignId = JSON.parse(storedCampaignId);
+      console.log(parsedCampaignId);
       setCampaignId(parsedCampaignId);
     }
     if (storedSetting) {
       const parsedSetting = JSON.parse(storedSetting);
+      console.log(parsedSetting);
       setTitle(parsedSetting.title);
       setDescription(parsedSetting.description);
     }

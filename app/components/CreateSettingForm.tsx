@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateSettingForm({ id }) {
-  console.log(id);
+export default function CreateSettingForm({id}) {
   const [title, setTitle] = useState("Random");
 
   const router = useRouter();

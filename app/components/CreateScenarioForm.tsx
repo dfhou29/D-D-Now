@@ -47,7 +47,7 @@ export default function CreateScenarioForm({id}) {
     localStorage.removeItem("scenario");
     localStorage.setItem("scenario", JSON.stringify(scenario));
     localStorage.removeItem("campaignId");
-    localStorage.setItem("campaignId", JSON.stringify({id}));
+    localStorage.setItem("campaignId", JSON.stringify(id));
 
     router.push("/campaign/scenario/form");
   };

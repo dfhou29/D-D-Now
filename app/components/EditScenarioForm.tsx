@@ -31,18 +31,18 @@ export default function CreateScenarioForm() {
   useEffect(() => {
     const storedScenario: any = localStorage.getItem("scenario");
     const storedCampaignId: any = localStorage.getItem("campaignId");
-    console.log(JSON.parse(storedScenario));
-    console.log(JSON.parse(storedCampaignId));
     if (storedCampaignId) {
       const parsedCampaignId = JSON.parse(storedCampaignId);
       setCampaignId(parsedCampaignId);
+      console.log(parsedCampaignId);
     }
     if (storedScenario) {
       const parsedScenario = JSON.parse(storedScenario);
+      console.log(parsedScenario);
       setTitle(parsedScenario.title);
       setLevel(parsedScenario.level);
       setDescription(parsedScenario.description);
-      setEnemies(parsedScenario.description);
+      // setEnemies(parsedScenario.enemies);
     }
   }, []);
 
@@ -58,12 +58,11 @@ export default function CreateScenarioForm() {
         title: title,
         level: level,
         description: description,
-        enemies: enemies,
         campaignId: campaignId,
       }),
     });
 
-    router.push("/scenario");
+    router.push(`/campaign/${campaignId}`);
   };
   
   return (
@@ -85,7 +84,6 @@ export default function CreateScenarioForm() {
         id="level"
         value={level}
         onChange={handleLevel}
-        required 
       />
 
       <label htmlFor="description">Scenario description</label>
@@ -105,7 +103,6 @@ export default function CreateScenarioForm() {
         id="enemies"
         value={enemies}
         onChange={handleEnemies}
-        required 
       />
       <button type="submit">Create</button>
     </form>
