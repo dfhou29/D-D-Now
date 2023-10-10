@@ -66,7 +66,7 @@ export default function SignupPage() {
           onChange={handlePassword}
           required 
         />
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
