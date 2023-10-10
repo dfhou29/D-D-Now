@@ -1,0 +1,42 @@
+[
+  {
+    "optgroup": "Dragonborn",
+    "options": [
+      "Black Dragonborn",
+      "Blue Dragonborn",
+      "Red Dragonborn",
+      "White Dragonborn"
+    ]
+  },
+  {
+    "optgroup": "Dwarf",
+    "options": ["Hill Dwarf", "Mountain Dwarf", "Red Dragonborn"]
+  },
+  {
+    "optgroup": "Elf",
+    "options": ["High Elf", "Dark Elf"]
+  },
+  {
+    "optgroup": "Gnome",
+    "option": ["Forest Gnome", "Rock Gnome"]
+  },
+  {
+    "options": ["Half-Elf"]
+  },
+  {
+    "options": ["Half-Orc"]
+  },
+  {
+    "optgroup": "Halfling",
+    "options": ["Lightfoot Halfling", "Stout Halfling"]
+  },
+  {
+    "options": ["Human"]
+  },
+  {
+    "options": ["Tiefling"]
+  },
+  {
+    "options": ["Random"]
+  }
+]

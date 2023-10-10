@@ -1,10 +1,16 @@
 import Link from "next/link";
-
-export default function Page() {
+import React from "react";
+export const revalidate = 0;
+const Character = () => {
   return (
-    <>
-      <h1>D&D now</h1>
-      <Link href="/character/character">New Character</Link>
-    </>
+    <div>
+      <h1>List of Created Characters</h1>
+
+      <Link href={"character/new"}>
+        <button>New Character</button>
+      </Link>
+    </div>
   );
-}
+};
+
+export default Character;
