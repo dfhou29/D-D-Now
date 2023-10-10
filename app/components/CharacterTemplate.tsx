@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
-export default function CharacterTemplate() {
+export default function CharacterTemplate({ user_id }) {
   const [character, setCharacter] = useState({
     id: "",
+    user_id: "",
     name: "",
     race: "",
     rank: "",
@@ -97,6 +98,7 @@ export default function CharacterTemplate() {
     console.log("stored character:", JSON.parse(storedCharacter));
     if (storedCharacter) {
       const parsedCharacter = JSON.parse(storedCharacter);
+      parsedCharacter["user_id"] = user_id;
       setCharacter(parsedCharacter);
     }
   }, []);
@@ -112,7 +114,14 @@ export default function CharacterTemplate() {
 
     event.preventDefault();
 
-    const numberFields = ["level", "age", "hitPoints", "armorClass", "id"];
+    const numberFields = [
+      "level",
+      "age",
+      "hitPoints",
+      "armorClass",
+      "id",
+      "user_id",
+    ];
 
     const rawData = { ...character };
 

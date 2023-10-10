@@ -31,7 +31,7 @@ export async function GET(request: Request) {
   const bonds = searchParams.get("bonds");
   const flaws = searchParams.get("flaws");
   const backstory = searchParams.get("backstory");
-  //const user_id = searchParams.get("user_id");
+  const user_id = searchParams.get("user_id");
 
   try {
     if (!id) throw new Error("id required");
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
     if (!level) throw new Error("level required");
 
     const result =
-      await sql`UPDATE characters SET name = ${name}, race = ${race}, rank = ${rank}, background = ${background}, alignment = ${alignment}, level = ${level}, armor_class = ${armor_class}, age =${age}, height = ${height}, weight = ${weight}, eyes = ${eyes}, skin =${skin}, hair = ${hair}, hit_points = ${hit_points}, hit_dice= ${hit_dice}, ability_scores = ${ability_scores}, proficiencies = ${proficiencies}, racial_traits = ${racial_traits}, class_features = ${class_features}, equipments = ${equipments}, spells = ${spells}, personality = ${personality}, ideals = ${ideals}, bonds = ${bonds}, flaws = ${flaws}, backstory = ${backstory} WHERE id = ${id} RETURNING id, user_id;`;
+      await sql`UPDATE characters SET name = ${name}, race = ${race}, rank = ${rank}, background = ${background}, alignment = ${alignment}, level = ${level}, armor_class = ${armor_class}, age =${age}, height = ${height}, weight = ${weight}, eyes = ${eyes}, skin =${skin}, hair = ${hair}, hit_points = ${hit_points}, hit_dice= ${hit_dice}, ability_scores = ${ability_scores}, proficiencies = ${proficiencies}, racial_traits = ${racial_traits}, class_features = ${class_features}, equipments = ${equipments}, spells = ${spells}, personality = ${personality}, ideals = ${ideals}, bonds = ${bonds}, flaws = ${flaws}, backstory = ${backstory}, user_id = ${user_id} WHERE id = ${id} RETURNING id, user_id;`;
 
     return NextResponse.json(
       {
@@ -78,7 +78,7 @@ export async function GET(request: Request) {
     console.log("bonds", bonds);
     console.log("flaws", flaws);
     console.log("backstory", backstory);
-    // console.log("user_id", user_id);
+    console.log("user_id", user_id);
 
     console.error("Updated Error:", error.message);
     return NextResponse.json({ error }, { status: 500 });
