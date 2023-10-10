@@ -36,7 +36,6 @@ Expected JSON Format:
     },
     "PLACEHOLDER_PROFICIENCY_NAME": {
       "description": "Description about Proficiency2",
-
     }
   },
   "racialTraits": {

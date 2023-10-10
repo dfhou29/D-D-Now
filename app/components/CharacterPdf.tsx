@@ -86,6 +86,81 @@ const Pdf = ({ character }) => {
     flaws,
     backstory,
   } = character;
+  
+  let proficiencies_bonus = "+" + (Math.ceil(level / 4) + 1);
+  let speed = 0;
+  if (race.includes("Dragonborn")) {
+    speed = 30;
+  } else if (race.includes("Dwarf")) {
+    speed = 25;
+  } else if (race == "Dark Elf") {
+    speed = 30;
+  } else if (race == "High Elf") {
+    speed = 30;
+  } else if (race == "Wood Elf") {
+    speed = 35;
+  } else if (race.includes("Gnome")) {
+    speed = 25;
+  } else if (race == "Half-Elf") {
+    speed = 30;
+  } else if (race == "Half-Orc") {
+    speed = 30;
+  } else if (race == "Human") {
+    speed = 30;
+  } else if (race == "Tiefling") {
+    speed = 30;
+  }
+ 
+  let spellcasting_ability = "";
+  let spell_save_dc = 0;
+  let spell_attack_bonus = "+";
+  if (rank == "Barbarian") {
+  } else if (rank == "Bard") {
+    spellcasting_ability = "CHA";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+  } else if (rank == "Cleric") {
+    spellcasting_ability = "WIS";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
+  } else if (rank == "Druid") {
+    spellcasting_ability = "WIS";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
+  } else if (rank == "Fighter") {
+  } else if (rank == "Monk") {
+  } else if (rank == "Paladin") {
+    spellcasting_ability = "CHA";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+  } else if (rank == "Ranger") {
+  } else if (rank == "Rogue") {
+  } else if (rank == "Sorcerer") {
+    spellcasting_ability = "CHA";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+  } else if (rank == "Warlock") {
+    spellcasting_ability = "CHA";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+  } else if (rank == "Wizard") {
+    spellcasting_ability = "INT";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
+  } else if (rank == "Artificer") {
+    spellcasting_ability = "INT";
+    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
+    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
+  }
+
+  let strengthModifier =
+    "" + Math.floor((parseInt(ability_scores.strength) - 10) / 2);
+
+  if (parseInt(strengthModifier) > 0) {
+    strengthModifier = "+" + strengthModifier;
+  } else {
+    strengthModifier = "" + strengthModifier;
+  }
 
   let initiative = "";
   let dexterityModifier =
@@ -99,7 +174,41 @@ const Pdf = ({ character }) => {
 
   initiative = dexterityModifier;
 
-  let proficiencies_bonus = "+" + (Math.ceil(level / 4) + 1);
+  let constitutionModifier =
+    "" + Math.floor((parseInt(ability_scores.constitution) - 10) / 2);
+
+  if (parseInt(constitutionModifier) > 0) {
+    constitutionModifier = "+" + constitutionModifier;
+  } else {
+    constitutionModifier = "" + constitutionModifier;
+  }
+
+  let intelligenceModifier =
+    "" + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
+
+  if (parseInt(intelligenceModifier) > 0) {
+    intelligenceModifier = "+" + intelligenceModifier;
+  } else {
+    intelligenceModifier = "" + intelligenceModifier;
+  }
+
+  let wisdomModifier =
+    "" + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
+
+  if (parseInt(wisdomModifier) > 0) {
+    wisdomModifier = "+" + wisdomModifier;
+  } else {
+    wisdomModifier = "" + wisdomModifier;
+  }
+
+  let charismaModifier =
+    "" + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+
+  if (parseInt(charismaModifier) > 0) {
+    charismaModifier = "+" + charismaModifier;
+  } else {
+    charismaModifier = "" + charismaModifier;
+  }
 
   return (
     <Document>
@@ -117,12 +226,12 @@ const Pdf = ({ character }) => {
           ></Image>
           {/* name */}
           <Text
-            style={{ position: "absolute", top: 44, left: 48, fontSize: 14 }}
+            style={{ position: "absolute", top: 46, left: 46, fontSize: 14 }}
           >
             {name}
           </Text>
           {/* basicinfo section */}
-          <View style={{ position: "absolute", top: 40, right: 50 }}>
+          <View style={{ position: "absolute", top: 41, right: 50 }}>
             <View
               style={{
                 display: "flex",
@@ -181,8 +290,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.strength}
                 </Text>
-                {/* replace with strength modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{strengthModifier}</Text>
               </View>
 
               {/* dexterity  */}
@@ -191,8 +299,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.dexterity}
                 </Text>
-                {/* replace with dexerity modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{dexterityModifier}</Text>
               </View>
 
               {/* constitution  */}
@@ -201,8 +308,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.constitution}
                 </Text>
-                {/* replace with constitution modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{constitutionModifier}</Text>
               </View>
 
               {/* intelligence  */}
@@ -211,8 +317,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.intelligence}
                 </Text>
-                {/* replace with intelligence modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{intelligenceModifier}</Text>
               </View>
 
               {/* wisdom  */}
@@ -221,8 +326,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.wisdom}
                 </Text>
-                {/* replace with wisdom modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{wisdomModifier}</Text>
               </View>
 
               {/* charisma  */}
@@ -231,8 +335,7 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.charisma}
                 </Text>
-                {/* replace with charisma modifier */}
-                <Text style={styles.abilityScoreMod}>0</Text>
+                <Text style={styles.abilityScoreMod}>{charismaModifier}</Text>
               </View>
             </View>
           </View>
@@ -244,12 +347,11 @@ const Pdf = ({ character }) => {
             INSPIRATION
           </Text>
 
-          {/* proficncies bonus */}
-          {/* replace placeholder with proficiencies bonus */}
+          {/* proficiency bonus */}
           <Text
-            style={{ position: "absolute", top: 126, left: 70, fontSize: 12 }}
+            style={{ position: "absolute", top: 126, left: 67, fontSize: 12 }}
           >
-            0
+            {proficiencies_bonus}
           </Text>
           <Text
             style={{ position: "absolute", top: 131, left: 88, fontSize: 4.5 }}
@@ -263,75 +365,299 @@ const Pdf = ({ character }) => {
           >
             SAVING THROW
           </Text>
+
           {/* strength */}
           <Text
-            style={{ position: "absolute", top: 154, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 154, left: 79, fontSize: 6 }}
           >
-            0
+            {strengthModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 154.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 155, left: 95, fontSize: 6 }}
           >
             Strength
           </Text>
 
           {/* dexterity */}
           <Text
-            style={{ position: "absolute", top: 164, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 164, left: 79, fontSize: 6 }}
           >
-            0
+            {dexterityModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 164.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 165, left: 95, fontSize: 6 }}
           >
             Dexterity
           </Text>
 
           {/* constitution */}
           <Text
-            style={{ position: "absolute", top: 174, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 174, left: 79, fontSize: 6 }}
           >
-            0
+            {constitutionModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 174.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 175, left: 95, fontSize: 6 }}
           >
             Constitution
           </Text>
 
           {/* intelligence */}
           <Text
-            style={{ position: "absolute", top: 184, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 184.5, left: 79, fontSize: 6 }}
           >
-            0
+            {intelligenceModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 184.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 185, left: 95, fontSize: 6 }}
           >
             Intelligence
           </Text>
 
           {/* wisdom */}
           <Text
-            style={{ position: "absolute", top: 194, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 195, left: 79, fontSize: 6 }}
           >
-            0
+            {wisdomModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 194.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 195, left: 95, fontSize: 6 }}
           >
             Wisdom
           </Text>
+
           {/* charisma */}
           <Text
-            style={{ position: "absolute", top: 204, left: 80, fontSize: 7 }}
+            style={{ position: "absolute", top: 205, left: 79, fontSize: 6 }}
           >
-            0
+            {charismaModifier}
           </Text>
           <Text
-            style={{ position: "absolute", top: 204.5, left: 95, fontSize: 6 }}
+            style={{ position: "absolute", top: 205, left: 95, fontSize: 6 }}
           >
             Charisma
+          </Text>
+
+          {/* skills */}
+          <Text
+            style={{ position: "absolute", top: 427, left: 93, fontSize: 6 }}
+          >
+            SKILLS
+          </Text>
+          {/* Acrobatics */}
+          <Text
+            style={{ position: "absolute", top: 241, left: 79, fontSize: 6 }}
+          >
+            {dexterityModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 241.7, left: 88, fontSize: 5 }}
+          >
+            Acrobatics (Dex)
+          </Text>
+
+          {/* Animal Handling */}
+          <Text
+            style={{ position: "absolute", top: 251, left: 79, fontSize: 6 }}
+          >
+            {wisdomModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 251.7, left: 88, fontSize: 5 }}
+          >
+            Animal Handling (Wis)
+          </Text>
+
+          {/* Arcana */}
+          <Text
+            style={{ position: "absolute", top: 261.3, left: 79, fontSize: 6 }}
+          >
+            {intelligenceModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 262, left: 88, fontSize: 5 }}
+          >
+            Arcana (Int)
+          </Text>
+          
+          {/* Athletics */}
+          <Text
+            style={{ position: "absolute", top: 272, left: 79, fontSize: 6 }}
+          >
+            {strengthModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 272.6, left: 88, fontSize: 5 }}
+          >
+            Athletics (Str)
+          </Text>
+
+          {/* Deception */}
+          <Text
+            style={{ position: "absolute", top: 282, left: 79, fontSize: 6 }}
+          >
+            {charismaModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 283, left: 88, fontSize: 5 }}
+          >
+            Deception (Cha)
+          </Text>
+
+          {/* History */}
+          <Text
+            style={{ position: "absolute", top: 292, left: 79, fontSize: 6 }}
+          >
+            {intelligenceModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 293, left: 88, fontSize: 5 }}
+          >
+            History (Int)
+          </Text>
+
+          {/* Insight */}
+          <Text
+            style={{ position: "absolute", top: 302, left: 79, fontSize: 6 }}
+          >
+            {wisdomModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 303, left: 88, fontSize: 5 }}
+          >
+            Insight (Wis)
+          </Text>
+          
+          {/* Intimidation */}
+          <Text
+            style={{ position: "absolute", top: 312, left: 79, fontSize: 6 }}
+          >
+            {charismaModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 313, left: 88, fontSize: 5 }}
+          >
+            Intimidation (Cha)
+          </Text>
+          
+          {/* Investigation */}
+          <Text
+            style={{ position: "absolute", top: 322.5, left: 79, fontSize: 6 }}
+          >
+            {intelligenceModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 323, left: 88, fontSize: 5 }}
+          >
+            Investigation (Int)
+          </Text>
+          
+          {/* Medicine */}
+          <Text
+            style={{ position: "absolute", top: 332.5, left: 79, fontSize: 6 }}
+          >
+            {wisdomModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 333, left: 88, fontSize: 5 }}
+          >
+            Medicine (Wis)
+          </Text>
+          
+          {/* Nature */}
+          <Text
+            style={{ position: "absolute", top: 342.5, left: 79, fontSize: 6 }}
+          >
+            {intelligenceModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 343, left: 88, fontSize: 5 }}
+          >
+            Nature (Int)
+          </Text>
+          
+          {/* Perception */}
+          <Text
+            style={{ position: "absolute", top: 352.5, left: 79, fontSize: 6 }}
+          >
+            {wisdomModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 353, left: 88, fontSize: 5 }}
+          >
+            Perception (Wis)
+          </Text>
+          
+          {/* Performance */}
+          <Text
+            style={{ position: "absolute", top: 362.5, left: 79, fontSize: 6 }}
+          >
+            {charismaModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 363, left: 88, fontSize: 5 }}
+          >
+            Performance (Cha)
+          </Text>
+          
+          {/* Persuasion */}
+          <Text
+            style={{ position: "absolute", top: 372.5, left: 79, fontSize: 6 }}
+          >
+            {charismaModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 373, left: 88, fontSize: 5 }}
+          >
+            Persuasion (Cha)
+          </Text>
+          
+          {/* Religion */}
+          <Text
+            style={{ position: "absolute", top: 382.5, left: 79, fontSize: 6 }}
+          >
+            {intelligenceModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 383, left: 88, fontSize: 5 }}
+          >
+            Religion (Int)
+          </Text>
+   
+          {/* Sleight of Hand */}
+          <Text
+            style={{ position: "absolute", top: 392.5, left: 79, fontSize: 6 }}
+          >
+            {dexterityModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 393, left: 88, fontSize: 5 }}
+          >
+            Sleight of Hand (Dex)
+          </Text>
+                    
+          {/* Stealth */}
+          <Text
+            style={{ position: "absolute", top: 402.5, left: 79, fontSize: 6 }}
+          >
+            {dexterityModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 403, left: 88, fontSize: 5 }}
+          >
+            Stealth (Dex)
+          </Text>
+        
+          {/* Survival */}
+          <Text
+            style={{ position: "absolute", top: 412.7, left: 79, fontSize: 6 }}
+          >
+            {wisdomModifier}
+          </Text>
+          <Text
+            style={{ position: "absolute", top: 413.5, left: 88, fontSize: 5 }}
+          >
+            Survival (Wis)
           </Text>
 
           {/* armor class */}
@@ -354,7 +680,7 @@ const Pdf = ({ character }) => {
 
           {/* initiative */}
           <Text
-            style={{ position: "absolute", top: 105, left: 200, fontSize: 16 }}
+            style={{ position: "absolute", top: 105, left: 198, fontSize: 16 }}
           >
             {initiative}
           </Text>
@@ -367,7 +693,7 @@ const Pdf = ({ character }) => {
           {/* speed */}
           {/* replace placeholder with speed */}
           <Text
-            style={{ position: "absolute", top: 105, left: 244, fontSize: 16 }}
+            style={{ position: "absolute", top: 105, left: 243, fontSize: 16 }}
           >
             0
           </Text>
@@ -598,7 +924,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              bottom: 96,
+              bottom: 116,
               left: 185,
             }}
           >
@@ -787,13 +1113,13 @@ const Pdf = ({ character }) => {
               fontSize: 12,
             }}
           >
-            AAA
+            {spellcasting_ability}
           </Text>
           <Text
             style={{
               position: "absolute",
               top: 64,
-              left: 194,
+              left: 192,
               fontSize: 6,
               width: 50,
               textAlign: "center",
@@ -808,17 +1134,17 @@ const Pdf = ({ character }) => {
             style={{
               position: "absolute",
               top: 45,
-              left: 278,
+              left: 279,
               fontSize: 12,
             }}
           >
-            00
+            {spell_save_dc}
           </Text>
           <Text
             style={{
               position: "absolute",
               top: 64,
-              left: 260,
+              left: 261,
               fontSize: 6,
               width: 50,
               textAlign: "center",
@@ -832,17 +1158,17 @@ const Pdf = ({ character }) => {
             style={{
               position: "absolute",
               top: 45,
-              left: 350,
+              left: 349,
               fontSize: 12,
             }}
           >
-            +0
+            {spell_attack_bonus}
           </Text>
           <Text
             style={{
               position: "absolute",
               top: 64,
-              left: 330,
+              left: 333,
               fontSize: 6,
               width: 50,
               textAlign: "center",

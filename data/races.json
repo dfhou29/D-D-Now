@@ -4,17 +4,22 @@
     "options": [
       "Black Dragonborn",
       "Blue Dragonborn",
+      "Brass Dragonborn",
+      "Copper Dragonborn",
+      "Gold Dragonborn",
+      "Green Dragonborn",
       "Red Dragonborn",
+      "Silver Dragonborn",
       "White Dragonborn"
     ]
   },
   {
     "optgroup": "Dwarf",
-    "options": ["Hill Dwarf", "Mountain Dwarf", "Red Dragonborn"]
+    "options": ["Hill Dwarf", "Mountain Dwarf"]
   },
   {
     "optgroup": "Elf",
-    "options": ["High Elf", "Dark Elf"]
+    "options": ["High Elf", "Dark Elf", "Wood Elf"]
   },
   {
     "optgroup": "Gnome",
