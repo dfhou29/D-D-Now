@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
+import { getCookieData } from "@/helper/getCookieData";
 
+export const revalidate = 0;
 export default async function Campaign() {
-  let data = await sql`SELECT * FROM campaigns;`;
+  const userId = getCookieData().id;
+  let data = await sql`SELECT * FROM campaigns WHERE user_id = ${userId};`;
   const { rows: campaigns } = data;
   
   revalidatePath("/campaign");

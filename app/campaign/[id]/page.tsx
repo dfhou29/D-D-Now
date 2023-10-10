@@ -2,6 +2,7 @@ import Link from "next/link";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
+export const revalidate = 0;
 export default async function Campaign({ params }: { params: { id: number }}) {
   const id = params.id;
   let data1 = await sql`SELECT * FROM campaigns WHERE id = ${id}`;
