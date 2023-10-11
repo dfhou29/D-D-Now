@@ -20,10 +20,10 @@ export default function DeleteCharacterButton({ id }) {
   };
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+      className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 w-24"
       onClick={handleClick}
     >
-      Delete
+      DELETE
     </button>
   );
 }

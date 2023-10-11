@@ -2,7 +2,7 @@
 
 export default function FormOption({ title, selections, value, onChange }) {
   return (
-    <div className="">
+    <div className="w-56">
       <label
         htmlFor={title}
         className="text-gray-600 text-md font-bold mb-2 self-start capitalize"

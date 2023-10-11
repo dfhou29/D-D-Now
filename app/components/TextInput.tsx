@@ -28,7 +28,7 @@ export default function TextInput({
       <textarea
         className={`block w-full ${
           height ? height : ""
-        } bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 whitespace-normal resize-none`}
+        } bg-gray-100 text-gray-700 border border-gray-300 py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 whitespace-normal resize-none`}
         value={character[label]}
         onChange={handleChange}
         onKeyDown={onKeyPress}

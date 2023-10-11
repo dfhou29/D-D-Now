@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import background from "public/background-img.jpg";
 
 export default function EditCampaignForm() {
   const [title, setTitle] = useState("");
@@ -21,7 +23,7 @@ export default function EditCampaignForm() {
       setTitle(parsedCampaign.title);
     }
   }, []);
-  
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/update-campaign", {
@@ -35,30 +37,49 @@ export default function EditCampaignForm() {
     router.push("/campaign");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-row gap-x-4">
-        <label
-          htmlFor="title"
-          className="text-gray-600 text-md font-bold mb-2 self-center"
-        >
-          Name
-        </label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={title}
-          onChange={handleTitle}
-          required
-          className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-          type="submit"
-        >
-          Create
-        </button>
+    <div className="relative">
+      <Image
+        src={background}
+        alt="background"
+        className="h-screen absolute -z-10"
+        style={{
+          objectFit: "cover",
+        }}
+      ></Image>
+      <div className="h-screen w-2/3 flex flex-col justify-start items-stretch bg-slate-100 ml-auto mr-auto pb-36 overflow-y-auto bg-opacity-80">
+        <form onSubmit={handleSubmit}>
+          <p className="mb-4 text-md font-bold tracking-normal text-gray-600 text-4xl mt-24 text-center">
+            Edit Campaign
+          </p>
+          <div className="border-t-2 border-gray-300 my-8 w-1/2 ml-auto mr-auto"></div>
+          <div className="flex flex-col gap-y-4 items-center">
+            <div className="flex flex-col w-80 mb-4">
+              <label
+                htmlFor="title"
+                className="text-gray-600 text-md font-bold mb-2 self-start"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                value={title}
+                onChange={handleTitle}
+                required
+                className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              />
+            </div>
+
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full w-24"
+              type="submit"
+            >
+              Save
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   );
 }

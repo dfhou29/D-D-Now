@@ -4,10 +4,14 @@ import TextInput from "./TextInput";
 import React from "react";
 import NestedTextInput from "./NestedTextInput";
 import { useRouter } from "next/navigation";
+import { Oval } from "react-loader-spinner";
+import Image from "next/image";
+import background from "public/background-img.jpg";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
 export default function CharacterTemplate({ user_id }) {
+  const [loading, setLoading] = useState(false);
   const [character, setCharacter] = useState({
     id: "",
     user_id: "",
@@ -110,6 +114,7 @@ export default function CharacterTemplate({ user_id }) {
   };
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     console.log("Character when submit", character);
 
     event.preventDefault();
@@ -191,14 +196,26 @@ export default function CharacterTemplate({ user_id }) {
 
   return (
     <CharacterContext.Provider value={{ setCharacter, character }}>
-      <div>
-        <div>
+      <div className="relative">
+        <Image
+          src={background}
+          alt="background"
+          className="h-screen absolute -z-10"
+          style={{
+            objectFit: "cover",
+          }}
+        ></Image>
+        <div className="h-screen flex flex-col justify-start items-center w-2/3 bg-slate-100 ml-auto mr-auto pt-16 overflow-y-auto bg-opacity-80">
+          <h2 className="mb-4 text-md font-bold tracking-normal text-gray-600 text-4xl mt-12">
+            Edit Character
+          </h2>
+          <div className="border-t-2 border-gray-300 my-8 w-1/2"></div>
           <form
-            className="border-2 border-gary-500 w-2/5 sm:w-3/5 md:w-10/12 ml-auto mr-auto"
+            className=" w-auto md:w-10/12 ml-auto mr-auto"
             onSubmit={handleSubmit}
           >
             {/* basic info section */}
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
               <p>Character Basics</p>
             </div>
             <div className="flex flex-col md:flex-row flex-wrap">
@@ -257,7 +274,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
               <p>Physical Attributes</p>
             </div>
             {/* appearance */}
@@ -317,7 +334,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
               <p>Defensive Stats</p>
             </div>
             <div className="flex flex-col md:flex-row flex-wrap">
@@ -349,7 +366,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
               <p>Character Insights</p>
             </div>
             <div className="flex flex-col">
@@ -420,13 +437,28 @@ export default function CharacterTemplate({ user_id }) {
                 <NestedTextInput title="Equipments" label="equipments" />
               </div>
             </div>
-            <div className="flex justify-center mb-12">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-              >
-                Submit
-              </button>
+            <div className="flex justify-center mb-36">
+              {loading ? (
+                <Oval
+                  height={40}
+                  width={40}
+                  color="#1D4ED8"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#60A5FA"
+                  strokeWidth={6}
+                  strokeWidthSecondary={4}
+                />
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-full"
+                >
+                  SAVE
+                </button>
+              )}
             </div>
           </form>
         </div>
