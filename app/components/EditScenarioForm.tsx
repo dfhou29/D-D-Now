@@ -46,7 +46,7 @@ export default function EditScenarioForm() {
       setTitle(parsedScenario.title);
       setLevel(parsedScenario.level);
       setDescription(parsedScenario.description);
-      // setEnemies(parsedScenario.enemies);
+      setEnemies(parsedScenario.enemies);
     }
   }, []);
 
@@ -64,6 +64,7 @@ export default function EditScenarioForm() {
           title: title,
           level: level,
           description: description,
+          enemies: enemies,
         }),
       });
       
@@ -81,6 +82,7 @@ export default function EditScenarioForm() {
           title: title,
           level: level,
           description: description,
+          enemies: enemies,
           campaignId: campaignId,
         }),
       });
