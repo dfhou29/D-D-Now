@@ -8,13 +8,14 @@ export async function POST(req: Request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  const prompt = `Given the preferences listed below, generate a unique and detailed Dungeons & Dragons combat scenario in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting.
+  const prompt = `Given the preferences listed below, generate a unique and detailed Dungeons & Dragons combat scenario in the format of a single JSON object. Please limit your response to only be within the expected json format. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Provide a unique, creative and detailed D&D encounter scenario with an interesting location, description and enemies.
 
 Expected JSON Format:
 {
   "title": "Scenario title",
   "level": ${level},
   "description": "Scenario description",
+  "enemies": "Scenario enemies",
 }
 
 
