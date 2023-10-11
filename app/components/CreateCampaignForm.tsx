@@ -21,7 +21,7 @@ export default function CreateCampaignForm({ userId }) {
       },
       body: JSON.stringify({ title: title, userId: userId }),
     });
-
+    router.refresh();
     router.push("/campaign");
   };
 

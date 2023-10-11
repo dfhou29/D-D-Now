@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
 import { getCookieData } from "@/helper/getCookieData";
+import EditCampaignButton from "@/components/EditCampaignButton";
+import DeleteCampaignButton from "@/components/DeleteCampaignButton";
 
-export const revalidate = 0;
+
 export default async function Campaign() {
   const userId = getCookieData().id;
   let data = await sql`SELECT * FROM campaigns WHERE user_id = ${userId};`;
   const { rows: campaigns } = data;
 
-  revalidatePath("/campaign");
   return (
     <div className="flex flex-col justify-start items-center h-screen w-4/5 bg-slate-100 ml-auto mr-auto">
       <h2 className="mb-16 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
@@ -27,6 +27,8 @@ export default async function Campaign() {
                   View
                 </button>
               </Link>
+              <EditCampaignButton campaign={campaign}/>
+              <DeleteCampaignButton id={campaign.id}/>
             </div>
           </li>
         ))}
@@ -39,3 +41,5 @@ export default async function Campaign() {
     </div>
   );
 }
+
+export const revalidate = 900;

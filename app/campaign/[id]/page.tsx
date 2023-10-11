@@ -1,20 +1,21 @@
 import Link from "next/link";
 import { sql } from "@vercel/postgres";
-import { revalidatePath } from "next/cache";
 
-export const revalidate = 0;
 export default async function Campaign({ params }: { params: { id: number } }) {
   const id = params.id;
   let data1 = await sql`SELECT * FROM campaigns WHERE id = ${id}`;
   let data2 = await sql`SELECT * FROM settings WHERE campaign_id = ${id}`;
   let data3 = await sql`SELECT * FROM scenarios WHERE campaign_id = ${id};`;
-  const { rows: campaigns } = data1;
+  const { rows } = data1;
+  const campaign = rows[0];
   const { rows: settings } = data2;
   const { rows: scenarios } = data3;
 
-  revalidatePath(`/campaign/${id}`);
   return (
     <div className="flex flex-col justify-start items-center w-4/5 bg-slate-100 ml-auto mr-auto">
+      <h1 className="mb-8 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
+        {campaign.title}
+      </h1>
       <h2 className="mb-8 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
         My Settings
       </h2>
@@ -78,3 +79,5 @@ export default async function Campaign({ params }: { params: { id: number } }) {
     </div>
   );
 }
+
+export const revalidate = 900;
