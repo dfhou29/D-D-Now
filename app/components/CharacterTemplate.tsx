@@ -110,7 +110,7 @@ export default function CharacterTemplate({ user_id }) {
   };
 
   const handleSubmit = async (event) => {
-    console.log("Charactter when submit", character);
+    console.log("Character when submit", character);
 
     event.preventDefault();
 
@@ -164,6 +164,7 @@ export default function CharacterTemplate({ user_id }) {
           console.log("response data:", data);
           const { id, user_id } = data;
           localStorage.removeItem("character");
+          router.refresh();
           router.push(`/character/${id}`);
         })
         .catch((error) => console.error("Update Error:", error));
@@ -181,6 +182,7 @@ export default function CharacterTemplate({ user_id }) {
         .then((data) => {
           const { id, user_id } = data;
           localStorage.removeItem("character");
+          router.refresh();
           router.push(`/character/${id}`);
         })
         .catch((error) => console.error("Error:", error));

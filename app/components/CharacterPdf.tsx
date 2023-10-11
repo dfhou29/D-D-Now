@@ -728,7 +728,7 @@ const Pdf = ({ character }) => {
 
           {/* hit dice */}
           <Text
-            style={{ position: "absolute", top: 242, left: 164, fontSize: 16 }}
+            style={{ position: "absolute", top: 242, left: 165, fontSize: 16 }}
           >
             {hit_dice}
           </Text>

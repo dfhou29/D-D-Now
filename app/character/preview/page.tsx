@@ -1,4 +1,3 @@
-export const revalidate = 0;
 import CharacterTemplate from "../../components/CharacterTemplate";
 
 import { getCookieData } from "@/helper/getCookieData";
@@ -15,3 +14,5 @@ export default function NewCharacterTemplate() {
     </div>
   );
 }
+
+export const revalidate = 900;

@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres";
 import dynamic from "next/dynamic";
-export const revalidate = 0;
+import DeleteCharacterButton from "@/components/DeleteCharacterButton";
 
 const Pdf = dynamic(() => import("../../components/CharacterPdf"), {
   ssr: false,
@@ -33,9 +33,12 @@ export default async function CharacterDetail({
       <p>Page to display pdf</p>
       <p>{params.id}</p>
       <EditCharacterButton character={character} id={id} />
+      <DeleteCharacterButton id={id} />
       <div className="flex justify-center items-center min-h-screen">
         <Pdf character={character} />
       </div>
     </div>
   );
 }
+
+export const revalidate = 900;
