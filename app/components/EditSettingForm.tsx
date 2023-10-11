@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateSettingForm() {
+export default function EditSettingForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [campaignId, setCampaignId] = useState();
+  const [id, setId] = useState(null);
 
   const router = useRouter();
 
@@ -29,6 +30,9 @@ export default function CreateSettingForm() {
     if (storedSetting) {
       const parsedSetting = JSON.parse(storedSetting);
       console.log(parsedSetting);
+      if(parsedSetting.id){
+        setId(parsedSetting.id);
+      }
       setTitle(parsedSetting.title);
       setDescription(parsedSetting.description);
     }
@@ -37,19 +41,42 @@ export default function CreateSettingForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("/api/add-setting", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        description: description,
-        campaignId: campaignId,
-      }),
-    });
+    if(id != null) {
+      const response = await fetch("/api/update-setting", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          title: title,
+          description: description,
+        }),
+      });
+      
+      localStorage.removeItem("setting");
+      localStorage.removeItem("campaignId");
+      router.refresh();
+      router.push(`/campaign/${campaignId}`);
+    } else {
+      const response = await fetch("/api/add-setting", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description,
+          campaignId: campaignId,
+        }),
+      });
+      
+      localStorage.removeItem("setting");
+      localStorage.removeItem("campaignId");
+      router.refresh();
+      router.push(`/campaign/${campaignId}`);
+    }
 
-    router.push(`/campaign/${campaignId}`);
   };
 
   return (
@@ -97,7 +124,7 @@ export default function CreateSettingForm() {
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full ml-auto mr-auto mb-8"
           >
-            Create
+            Submit
           </button>
         </div>
       </form>
