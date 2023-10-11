@@ -36,4 +36,4 @@ export default async function Character() {
   );
 }
 
-export const revalidate = 900;
+export const revalidate = 0;

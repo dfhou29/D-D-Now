@@ -1,7 +1,13 @@
 import React, { useContext } from "react";
 import { CharacterContext } from "./CharacterTemplate";
 
-export default function TextInput({ title, label, onKeyPress, required }) {
+export default function TextInput({
+  title,
+  label,
+  onKeyPress,
+  required,
+  height,
+}) {
   const { character, setCharacter } = useContext(CharacterContext);
 
   const handleChange = (event) => {
@@ -19,9 +25,10 @@ export default function TextInput({ title, label, onKeyPress, required }) {
       >
         {title}
       </label>
-      <input
-        type="text"
-        className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+      <textarea
+        className={`block w-full ${
+          height ? height : ""
+        } bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 whitespace-normal resize-none`}
         value={character[label]}
         onChange={handleChange}
         onKeyDown={onKeyPress}

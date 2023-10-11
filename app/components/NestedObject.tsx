@@ -102,9 +102,9 @@ export default function NestedObject({ obj, path }) {
           const currentPath = [...path, key];
 
           return (
-            <div>
+            <div key={key}>
               {typeof value === "object" ? (
-                <div key={key} className="flex flex-col">
+                <div className="flex flex-col">
                   {key.includes("Cantrips") || key.includes("Level") ? (
                     <>
                       <div className="border-t-2 border-gray-300 my-4 w-full"></div>

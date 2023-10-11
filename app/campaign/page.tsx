@@ -4,7 +4,6 @@ import { getCookieData } from "@/helper/getCookieData";
 import EditCampaignButton from "@/components/EditCampaignButton";
 import DeleteCampaignButton from "@/components/DeleteCampaignButton";
 
-
 export default async function Campaign() {
   const userId = getCookieData().id;
   let data = await sql`SELECT * FROM campaigns WHERE user_id = ${userId};`;
@@ -27,8 +26,8 @@ export default async function Campaign() {
                   View
                 </button>
               </Link>
-              <EditCampaignButton campaign={campaign}/>
-              <DeleteCampaignButton id={campaign.id}/>
+              <EditCampaignButton campaign={campaign} />
+              <DeleteCampaignButton id={campaign.id} />
             </div>
           </li>
         ))}
@@ -42,4 +41,4 @@ export default async function Campaign() {
   );
 }
 
-export const revalidate = 900;
+export const revalidate = 0;

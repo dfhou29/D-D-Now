@@ -15,4 +15,4 @@ export default function NewCharacterTemplate() {
   );
 }
 
-export const revalidate = 900;
+export const revalidate = 0;
