@@ -80,4 +80,4 @@ export default async function Campaign({ params }: { params: { id: number } }) {
   );
 }
 
-export const revalidate = 900;
+export const revalidate = 0;

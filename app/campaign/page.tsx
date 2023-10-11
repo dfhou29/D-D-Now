@@ -42,4 +42,4 @@ export default async function Campaign() {
   );
 }
 
-export const revalidate = 900;
+export const revalidate = 0;
