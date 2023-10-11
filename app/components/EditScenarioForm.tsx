@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateScenarioForm() {
+export default function EditScenarioForm() {
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("");
   const [description, setDescription] = useState("");
   const [enemies, setEnemies] = useState("");
   const [campaignId, setCampaignId] = useState("");
+  const [id, setId] = useState(null);
 
   const router = useRouter();
 
@@ -39,6 +40,9 @@ export default function CreateScenarioForm() {
     if (storedScenario) {
       const parsedScenario = JSON.parse(storedScenario);
       console.log(parsedScenario);
+      if(parsedScenario.id){
+        setId(parsedScenario.id);
+      }
       setTitle(parsedScenario.title);
       setLevel(parsedScenario.level);
       setDescription(parsedScenario.description);
@@ -48,21 +52,44 @@ export default function CreateScenarioForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const response = await fetch("/api/add-scenario", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        level: level,
-        description: description,
-        campaignId: campaignId,
-      }),
-    });
-
-    router.push(`/campaign/${campaignId}`);
+    
+    if(id != null) {
+      const response = await fetch("/api/update-scenario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          title: title,
+          level: level,
+          description: description,
+        }),
+      });
+      
+      localStorage.removeItem("scenario");
+      localStorage.removeItem("campaignId");
+      router.refresh();
+      router.push(`/campaign/scenario/${id}`);
+    } else {
+      const response = await fetch("/api/add-scenario", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          level: level,
+          description: description,
+          campaignId: campaignId,
+        }),
+      });
+      
+      localStorage.removeItem("setting");
+      localStorage.removeItem("campaignId");
+      router.refresh();
+      router.push(`/campaign/${campaignId}`);
+    }
   };
 
   return (
@@ -141,7 +168,7 @@ export default function CreateScenarioForm() {
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full ml-auto mr-auto mb-8"
           >
-            Create
+            Submit
           </button>
         </div>
       </form>

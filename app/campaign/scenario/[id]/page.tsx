@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { sql } from "@vercel/postgres";
+import EditScenarioButton from "@/components/EditScenarioButton";
+import DeleteScenarioButton from "@/components/DeleteScenarioButton";
 
-export const revalidate = 0;
 export default async function Scenario({ params }: { params: { id: number } }) {
   const id = params.id;
   let data = await sql`SELECT * FROM scenarios WHERE id = ${id} ORDER BY id;`;
@@ -13,6 +14,8 @@ export default async function Scenario({ params }: { params: { id: number } }) {
         <h1 className="mb-8 text-md font-bold tracking-normal text-gray-600 text-4xl my-12">
           {scenario.title}
         </h1>
+        <EditScenarioButton scenario={scenario} />
+        <DeleteScenarioButton scenario={scenario} />
         <div className="flex flex-col justify-center items-center">
           <h2>Level</h2>
           <p>{scenario.level}</p>
@@ -25,14 +28,13 @@ export default async function Scenario({ params }: { params: { id: number } }) {
           <h2>Enemies</h2>
           <p>{scenario.enemies}</p>
         </div>
-        <Link href={`/campaign/${id}`}>
+        <Link href={`/campaign/${scenario.campaign_id}`}>
           <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full">
-            Back to Campaigns
+            Back to Campaign
           </button>
         </Link>
       </div>
       <p>to do: styling</p>
-      <p>fix back button</p>
     </div>
   );
 }
