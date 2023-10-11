@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-export default function LogoutButton(name) {
+export default function LogoutButton() {
   const router = useRouter();
 
   const logout = async () => {
@@ -12,14 +12,9 @@ export default function LogoutButton(name) {
       "Content-Type": "application/json",
     },
   });
-
+    router.refresh();
     router.push("/login");
   };
 
-  return (
-    <>
-      <div>User: ${name}</div>
-      <button onClick={logout}>Logout</button>
-    </>
-  );
+  return <button onClick={logout}>Logout</button>;
 }

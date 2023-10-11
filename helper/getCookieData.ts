@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 export const getCookieData = () => {
   try {
-    const cookieStore = cookies()
+    const cookieStore = cookies();
     const token = cookieStore.get("token")?.value || '';
     const decodedToken:any = jwt.verify(token, process.env.TOKEN_SECRET!);
     return decodedToken;

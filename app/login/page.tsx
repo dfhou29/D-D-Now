@@ -28,7 +28,7 @@ export default function LoginPage() {
       },
       body: JSON.stringify({ email: email, password: password }),
     });
-
+    router.refresh();
     router.push("/");
   };
 

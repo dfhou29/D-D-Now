@@ -1,20 +1,15 @@
-"use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { getCookieData } from "@/helper/getCookieData";
+import LogoutButton from "@/components/LogoutButton";
+import { cookies } from 'next/headers'
 
 export default function Navbar() {
-  const router = useRouter();
-
-  const logout = async () => {
-    const response = await fetch("/api/logout", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    router.push("/login");
-  };
+  let username = null;
+  const cookieStore = cookies();
+  const token = cookieStore.get("token")?.value || '';
+  if(token) {
+    username = getCookieData().name;
+  }
 
   return (
     <div className="fixed top-0 w-full z-10">
@@ -28,15 +23,25 @@ export default function Navbar() {
             <div>
               <Link href="/campaign">Your Campaigns</Link>
             </div>
-            <div>
-              <Link href="/login">Login</Link>
-            </div>
-            <div>
-              <Link href="/signup">Signup</Link>
-            </div>
-            <div>
-              <button onClick={logout}>Logout</button>
-            </div>
+            {!username ? (
+              <div>
+                <div>
+                  <Link href="/login">Login</Link>
+                </div>
+                <div>
+                  <Link href="/signup">Signup</Link>
+                </div>
+              </div>
+            ) : (
+            <>
+              <div>
+                User: {username}
+              </div>
+              <div>
+                <LogoutButton />
+              </div>
+            </>
+            )}
           </div>
         </nav>
       </header>
