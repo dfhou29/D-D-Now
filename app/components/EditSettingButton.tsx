@@ -14,10 +14,10 @@ export default function EditSettingButton({ setting }) {
   };
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+      className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24"
       onClick={handleClick}
     >
-      Edit
+      EDIT
     </button>
   );
 }

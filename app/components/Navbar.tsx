@@ -12,16 +12,16 @@ export default function Navbar() {
   }
 
   return (
-    <>
-      <h1>D&D now</h1>
-      <header>
-        <nav>
-          <div>
+    <div className="fixed top-0 w-full z-10">
+      <header className="bg-gray-500 text-white">
+        <h1>D&D now</h1>
+        <nav className=" mx-auto px-4 py-2">
+          <div className="flex justify-between space-x-4">
             <div>
               <Link href="/character">Your Characters</Link>
             </div>
             <div>
-              <Link href="/campaign">Your Champaigns</Link>
+              <Link href="/campaign">Your Campaigns</Link>
             </div>
             {!username ? (
               <div>
@@ -45,6 +45,6 @@ export default function Navbar() {
           </div>
         </nav>
       </header>
-    </>
+    </div>
   );
 }

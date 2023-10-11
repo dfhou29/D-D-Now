@@ -6,9 +6,5 @@ export default function NewScenario({
   searchParams: { campaignId: number };
 }) {
   const id = searchParams.campaignId;
-  return (
-    <div>
-      <CreateScenarioForm id={id} />
-    </div>
-  );
+  return <CreateScenarioForm id={id} />;
 }

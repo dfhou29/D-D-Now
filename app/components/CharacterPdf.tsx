@@ -86,7 +86,7 @@ const Pdf = ({ character }) => {
     flaws,
     backstory,
   } = character;
-  
+
   let proficiencies_bonus = "+" + (Math.ceil(level / 4) + 1);
   let speed = 0;
   if (race.includes("Dragonborn")) {
@@ -110,47 +110,103 @@ const Pdf = ({ character }) => {
   } else if (race == "Tiefling") {
     speed = 30;
   }
- 
+
   let spellcasting_ability = "";
   let spell_save_dc = 0;
   let spell_attack_bonus = "+";
   if (rank == "Barbarian") {
   } else if (rank == "Bard") {
     spellcasting_ability = "CHA";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
   } else if (rank == "Cleric") {
     spellcasting_ability = "WIS";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
   } else if (rank == "Druid") {
     spellcasting_ability = "WIS";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.wisdom) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.wisdom) - 10) / 2));
   } else if (rank == "Fighter") {
   } else if (rank == "Monk") {
   } else if (rank == "Paladin") {
     spellcasting_ability = "CHA";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
   } else if (rank == "Ranger") {
   } else if (rank == "Rogue") {
   } else if (rank == "Sorcerer") {
     spellcasting_ability = "CHA";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
   } else if (rank == "Warlock") {
     spellcasting_ability = "CHA";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.charisma) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.charisma) - 10) / 2));
   } else if (rank == "Wizard") {
     spellcasting_ability = "INT";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
   } else if (rank == "Artificer") {
     spellcasting_ability = "INT";
-    spell_save_dc = 8 + (Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
-    spell_attack_bonus = "+" + ((Math.ceil(level / 4) + 1) + Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
+    spell_save_dc =
+      8 +
+      (Math.ceil(level / 4) + 1) +
+      Math.floor((parseInt(ability_scores.intelligence) - 10) / 2);
+    spell_attack_bonus =
+      "+" +
+      (Math.ceil(level / 4) +
+        1 +
+        Math.floor((parseInt(ability_scores.intelligence) - 10) / 2));
   }
 
   let strengthModifier =
@@ -308,7 +364,9 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.constitution}
                 </Text>
-                <Text style={styles.abilityScoreMod}>{constitutionModifier}</Text>
+                <Text style={styles.abilityScoreMod}>
+                  {constitutionModifier}
+                </Text>
               </View>
 
               {/* intelligence  */}
@@ -317,7 +375,9 @@ const Pdf = ({ character }) => {
                 <Text style={styles.abilityScoreValue}>
                   {ability_scores.intelligence}
                 </Text>
-                <Text style={styles.abilityScoreMod}>{intelligenceModifier}</Text>
+                <Text style={styles.abilityScoreMod}>
+                  {intelligenceModifier}
+                </Text>
               </View>
 
               {/* wisdom  */}
@@ -479,7 +539,7 @@ const Pdf = ({ character }) => {
           >
             Arcana (Int)
           </Text>
-          
+
           {/* Athletics */}
           <Text
             style={{ position: "absolute", top: 272, left: 79, fontSize: 6 }}
@@ -527,7 +587,7 @@ const Pdf = ({ character }) => {
           >
             Insight (Wis)
           </Text>
-          
+
           {/* Intimidation */}
           <Text
             style={{ position: "absolute", top: 312, left: 79, fontSize: 6 }}
@@ -539,7 +599,7 @@ const Pdf = ({ character }) => {
           >
             Intimidation (Cha)
           </Text>
-          
+
           {/* Investigation */}
           <Text
             style={{ position: "absolute", top: 322.5, left: 79, fontSize: 6 }}
@@ -551,7 +611,7 @@ const Pdf = ({ character }) => {
           >
             Investigation (Int)
           </Text>
-          
+
           {/* Medicine */}
           <Text
             style={{ position: "absolute", top: 332.5, left: 79, fontSize: 6 }}
@@ -563,7 +623,7 @@ const Pdf = ({ character }) => {
           >
             Medicine (Wis)
           </Text>
-          
+
           {/* Nature */}
           <Text
             style={{ position: "absolute", top: 342.5, left: 79, fontSize: 6 }}
@@ -575,7 +635,7 @@ const Pdf = ({ character }) => {
           >
             Nature (Int)
           </Text>
-          
+
           {/* Perception */}
           <Text
             style={{ position: "absolute", top: 352.5, left: 79, fontSize: 6 }}
@@ -587,7 +647,7 @@ const Pdf = ({ character }) => {
           >
             Perception (Wis)
           </Text>
-          
+
           {/* Performance */}
           <Text
             style={{ position: "absolute", top: 362.5, left: 79, fontSize: 6 }}
@@ -599,7 +659,7 @@ const Pdf = ({ character }) => {
           >
             Performance (Cha)
           </Text>
-          
+
           {/* Persuasion */}
           <Text
             style={{ position: "absolute", top: 372.5, left: 79, fontSize: 6 }}
@@ -611,7 +671,7 @@ const Pdf = ({ character }) => {
           >
             Persuasion (Cha)
           </Text>
-          
+
           {/* Religion */}
           <Text
             style={{ position: "absolute", top: 382.5, left: 79, fontSize: 6 }}
@@ -623,7 +683,7 @@ const Pdf = ({ character }) => {
           >
             Religion (Int)
           </Text>
-   
+
           {/* Sleight of Hand */}
           <Text
             style={{ position: "absolute", top: 392.5, left: 79, fontSize: 6 }}
@@ -635,7 +695,7 @@ const Pdf = ({ character }) => {
           >
             Sleight of Hand (Dex)
           </Text>
-                    
+
           {/* Stealth */}
           <Text
             style={{ position: "absolute", top: 402.5, left: 79, fontSize: 6 }}
@@ -647,7 +707,7 @@ const Pdf = ({ character }) => {
           >
             Stealth (Dex)
           </Text>
-        
+
           {/* Survival */}
           <Text
             style={{ position: "absolute", top: 412.7, left: 79, fontSize: 6 }}
@@ -894,7 +954,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              bottom: 90,
+              bottom: 80,
               left: 28,
             }}
           >
@@ -924,7 +984,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              bottom: 116,
+              bottom: 106,
               left: 185,
             }}
           >
@@ -1476,7 +1536,7 @@ const PDFView = ({ character }) => {
   });
 
   return (
-    <PDFViewer style={{ width: "60%", height: "800px" }}>
+    <PDFViewer style={{ width: "80%", height: "900px" }}>
       <Pdf character={character} />
     </PDFViewer>
   );

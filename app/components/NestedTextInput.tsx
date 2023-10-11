@@ -7,7 +7,7 @@ export default function NestedTextInput({ label, title }) {
 
   return (
     <div className="flex flex-col">
-      <label className="text-gray-600 text-xl font-bold mb-2 text-center capitalize">
+      <label className="text-gray-600 text-2xl font-bold mb-2 text-center capitalize">
         {title}
       </label>
       <NestedObject obj={character[label]} path={[label]} />
