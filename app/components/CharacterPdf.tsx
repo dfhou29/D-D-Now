@@ -856,7 +856,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              top: 295,
+              top: 293,
               left: 290,
             }}
           >
@@ -894,7 +894,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              bottom: 90,
+              top: 475,
               left: 28,
             }}
           >
@@ -924,7 +924,7 @@ const Pdf = ({ character }) => {
               display: "flex",
               flexDirection: "column",
               position: "absolute",
-              bottom: 116,
+              top: 450,
               left: 185,
             }}
           >
@@ -1109,7 +1109,7 @@ const Pdf = ({ character }) => {
             style={{
               position: "absolute",
               top: 45,
-              left: 204,
+              left: 205,
               fontSize: 12,
             }}
           >
