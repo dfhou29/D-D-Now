@@ -6,9 +6,5 @@ export default function NewSetting({
   searchParams: { campaignId: number };
 }) {
   const id = searchParams.campaignId;
-  return (
-    <div>
-      <CreateSettingForm id={id} />
-    </div>
-  );
+  return <CreateSettingForm id={id} />;
 }

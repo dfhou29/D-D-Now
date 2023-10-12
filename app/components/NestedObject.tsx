@@ -102,9 +102,9 @@ export default function NestedObject({ obj, path }) {
           const currentPath = [...path, key];
 
           return (
-            <div>
+            <div key={key}>
               {typeof value === "object" ? (
-                <div key={key} className="flex flex-col">
+                <div className="flex flex-col">
                   {key.includes("Cantrips") || key.includes("Level") ? (
                     <>
                       <div className="border-t-2 border-gray-300 my-4 w-full"></div>
@@ -121,7 +121,7 @@ export default function NestedObject({ obj, path }) {
               ) : (
                 <div key={key}>
                   {key !== "description" && (
-                    <label className="text-gray-600 text-md font-bold mb-2 capitalize">
+                    <label className="text-gray-600 text-md font-bold mb-2 capitalize ">
                       {key}
                     </label>
                   )}
@@ -131,7 +131,7 @@ export default function NestedObject({ obj, path }) {
                       type="text"
                       value={value as string}
                       onChange={(event) => handleUpdate(event, currentPath)}
-                      className="block w-full bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                      className="block w-full bg-gray-100 text-gray-700 border border-gray-300 py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
                     />
                   ) : (
                     <div className="w-full flex flex-col items-center">
@@ -139,11 +139,11 @@ export default function NestedObject({ obj, path }) {
                         onKeyDown={handleKeyPress}
                         value={value as string}
                         onChange={(event) => handleUpdate(event, currentPath)}
-                        className="block w-full h-16 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 my-2"
+                        className="block w-full h-48 md:h-24 bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 my-2 resize-none"
                       />
                       <button
                         type="button"
-                        className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full w-20 my-2 "
+                        className="bg-red-500 hover:bg-red-700 text-white py-3 px-4 my-2 font-600 w-24"
                         onClick={(event) => handleDelete(event)}
                       >
                         Delete
@@ -158,7 +158,7 @@ export default function NestedObject({ obj, path }) {
       {/* to add new spell level category */}
       {isAtSpellsRoot && (
         <div className="flex flex-col">
-          <div className="flex justify-center items-center gap-x-4">
+          <div className="flex flex-col lg:flex-row justify-start lg:justify-center gap-x-4 gap-y-4">
             <label className="text-gray-600 text-md font-bold mb-2 self-center">
               New Level (format: Level x)
             </label>
@@ -168,14 +168,14 @@ export default function NestedObject({ obj, path }) {
               placeholder=""
               value={newSpellLevel}
               onChange={(e) => setNewSpellLevel(e.target.value)}
-              className="block bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              className="block bg-gray-100 text-gray-700 border border-gray-300 py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
             <button
-              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 w-28 self-center lg:w-auto font-600"
               type="button"
               onClick={(event) => handleAddSpellLevel(event)}
             >
-              Add Level
+              ADD LEVEL
             </button>
           </div>
           {errorMessage && (
@@ -187,7 +187,7 @@ export default function NestedObject({ obj, path }) {
       {/* to add new spell under spell -> level */}
       {isAtSpellLevels && (
         <div className="flex flex-col justify-center items-center w-full my-12">
-          <div className="flex justify-start items-center gap-x-4 w-full">
+          <div className="flex flex-col gap-y-4 lg:flex-row justify-start lg:items-center gap-x-4 w-full">
             <label className="text-gray-600 text-md font-bold mb-2">
               New Spell
             </label>
@@ -197,23 +197,22 @@ export default function NestedObject({ obj, path }) {
               placeholder="Name"
               value={newItemName}
               onChange={(e) => setNewItemName(e.target.value)}
-              className="block w-60 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              className="block  bg-gray-100 text-gray-700 border border-gray-300 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
-            <input
+            <textarea
               onKeyDown={handleKeyPress}
-              type="text"
               placeholder="description"
               value={newItemDesc}
               onChange={(e) => setNewItemDesc(e.target.value)}
-              className="block flex-grow bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              className="block flex-grow bg-gray-100 text-gray-700 border border-gray-300 py-3 px-4 leading-tight focus:outline-none focus:border-gray-500 resize-none lg:h-12 h-32"
             />
 
             <button
               type="button"
-              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 w-24 self-center lg:w-auto "
               onClick={(event) => handleAddItem(event)}
             >
-              Add
+              ADD
             </button>
           </div>
           {errorMessage && (
@@ -221,11 +220,11 @@ export default function NestedObject({ obj, path }) {
           )}
           <div>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 rounded-full my-8"
+              className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 my-8 font-600"
               type="button"
               onClick={(event) => handleDeleteSpellLevel(event)}
             >
-              Delete Level
+              DELETE LEVEL
             </button>
           </div>
         </div>
@@ -233,7 +232,7 @@ export default function NestedObject({ obj, path }) {
       {/* add new name, description into current obj */}
       {!isAtSpellsRoot && !isAtAbilityScoresRoot && isAtRoot && (
         <div className="flex flex-col justify-center">
-          <div className="flex my-12 gap-x-4">
+          <div className="flex my-12 gap-x-4 flex-col gap-y-4 lg:flex-row justify-start lg:items-center w-full">
             <label className="text-gray-600 text-md font-bold mb-2 self-center">
               New Item
             </label>
@@ -243,7 +242,7 @@ export default function NestedObject({ obj, path }) {
               placeholder="Name"
               value={newItemName}
               onChange={(e) => setNewItemName(e.target.value)}
-              className="block w-60 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              className="block lg:w-60 bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
             <input
               onKeyDown={handleKeyPress}
@@ -251,14 +250,14 @@ export default function NestedObject({ obj, path }) {
               placeholder="description"
               value={newItemDesc}
               onChange={(e) => setNewItemDesc(e.target.value)}
-              className="block flex-grow bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              className="block flex-grow bg-gray-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
             <button
               type="button"
               onClick={() => handleAddItem(event)}
-              className="bg-gray-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
+              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 self-center w-20 lg:w-auto font-600"
             >
-              Add
+              ADD
             </button>
           </div>
           {errorMessage && (

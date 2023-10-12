@@ -4,10 +4,14 @@ import TextInput from "./TextInput";
 import React from "react";
 import NestedTextInput from "./NestedTextInput";
 import { useRouter } from "next/navigation";
+import { Oval } from "react-loader-spinner";
+import Image from "next/image";
+import background from "public/background-img-samurai.png";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
 export default function CharacterTemplate({ user_id }) {
+  const [loading, setLoading] = useState(false);
   const [character, setCharacter] = useState({
     id: "",
     user_id: "",
@@ -110,6 +114,7 @@ export default function CharacterTemplate({ user_id }) {
   };
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     console.log("Character when submit", character);
 
     event.preventDefault();
@@ -191,147 +196,177 @@ export default function CharacterTemplate({ user_id }) {
 
   return (
     <CharacterContext.Provider value={{ setCharacter, character }}>
-      <div>
-        <div>
-          <form onSubmit={handleSubmit}>
+      <div className="relative">
+        <Image
+          src={background}
+          alt="background"
+          className="h-screen absolute -z-10"
+          style={{
+            objectFit: "cover",
+          }}
+        ></Image>
+        <div className="h-screen flex flex-col justify-start items-center w-2/3 bg-slate-100 ml-auto mr-auto pt-16 overflow-y-auto bg-opacity-80">
+          <h2 className="mb-4 text-md font-bold tracking-normal text-gray-600 text-4xl mt-12">
+            Edit Character
+          </h2>
+          <div className="border-t-2 border-gray-300 my-8 w-1/2"></div>
+          <form
+            className=" w-auto md:w-10/12 ml-auto mr-auto"
+            onSubmit={handleSubmit}
+          >
             {/* basic info section */}
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Character Basics</p>
             </div>
-            <div className="flex flex-row flex-wrap">
-              <div className="w-1/3 p-4">
+            <div className="flex flex-col md:flex-row flex-wrap">
+              <div className=" w-full md:w-1/3 p-4">
                 <TextInput
                   title="Name"
                   label="name"
                   onKeyPress={handleKeyPress}
                   required={true}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Race"
                   label="race"
                   onKeyPress={handleKeyPress}
                   required={true}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Rank"
                   label="rank"
                   onKeyPress={handleKeyPress}
                   required={true}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Background"
                   label="background"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Alignment"
                   label="alignment"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full sm:w-1/3 p-4">
                 <TextInput
                   title="Level"
                   label="level"
                   onKeyPress={handleKeyPress}
                   required={true}
+                  height="h-12"
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Physical Attributes</p>
             </div>
             {/* appearance */}
-            <div className="flex flex-row flex-wrap">
-              <div className="w-1/3 p-4">
+            <div className="flex flex-col md:flex-row flex-wrap">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Age"
                   label="age"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Height"
                   label="height"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Weight"
                   label="weight"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Eyes"
                   label="eyes"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Skin"
                   label="skin"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Hair"
                   label="hair"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Defensive Stats</p>
             </div>
-            <div className="flex flex-row flex-wrap">
-              <div className="w-1/3 p-4">
+            <div className="flex flex-col md:flex-row flex-wrap">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Armor Class"
                   label="armorClass"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Hit Points"
                   label="hitPoints"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
-              <div className="w-1/3 p-4">
+              <div className="w-full md:w-1/3 p-4">
                 <TextInput
                   title="Hit Dice"
                   label="hitDice"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-12"
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Character Insights</p>
             </div>
             <div className="flex flex-col">
@@ -341,6 +376,7 @@ export default function CharacterTemplate({ user_id }) {
                   label="personality"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-36"
                 />
               </div>
               <div className="p-4">
@@ -349,6 +385,7 @@ export default function CharacterTemplate({ user_id }) {
                   label="ideals"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-36"
                 />
               </div>
               <div className="p-4">
@@ -357,6 +394,7 @@ export default function CharacterTemplate({ user_id }) {
                   label="bonds"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-36"
                 />
               </div>
               <div className="p-4">
@@ -365,6 +403,7 @@ export default function CharacterTemplate({ user_id }) {
                   label="flaws"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-36"
                 />
               </div>
               <div className="p-4">
@@ -373,6 +412,7 @@ export default function CharacterTemplate({ user_id }) {
                   label="backstory"
                   onKeyPress={handleKeyPress}
                   required={false}
+                  height="h-36 whitespace-normal"
                 />
               </div>
             </div>
@@ -397,13 +437,28 @@ export default function CharacterTemplate({ user_id }) {
                 <NestedTextInput title="Equipments" label="equipments" />
               </div>
             </div>
-            <div className="flex justify-center mb-12">
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full"
-              >
-                Submit
-              </button>
+            <div className="flex justify-center mb-36">
+              {loading ? (
+                <Oval
+                  height={40}
+                  width={40}
+                  color="#1D4ED8"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#60A5FA"
+                  strokeWidth={6}
+                  strokeWidthSecondary={4}
+                />
+              ) : (
+                <button
+                  type="submit"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 w-full font-600 mx-4"
+                >
+                  SAVE
+                </button>
+              )}
             </div>
           </form>
         </div>
