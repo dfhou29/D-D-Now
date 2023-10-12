@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import backgroundImg from "public/background-img.jpg";
+import backgroundImg from "public/background-img-samurai.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import FormOption from "./FormOption";
@@ -74,7 +74,7 @@ export default function CharacterForm() {
   const levels = loadLevels();
 
   return (
-    <div className="relative">
+    <div className="relative font-poppins">
       <Image
         src={backgroundImg}
         alt="background"
@@ -83,12 +83,12 @@ export default function CharacterForm() {
           objectFit: "cover",
         }}
       ></Image>
-      <div className="flex flex-col justify-start items-center h-screen w-2/3 bg-slate-100 ml-auto mr-auto bg-opacity-80 overflow-y-auto pt-16">
+      <div className="flex flex-col justify-start items-center h-screen w-2/3 bg-slate-100 ml-auto mr-auto bg-opacity-80 overflow-y-auto pt-16 ">
         <div className="text-md font-bold tracking-normal text-gray-600 text-4xl mt-12">
           <h2>Generate Your D&D Character Template</h2>
         </div>
         <div className="border-t-2 border-gray-300 my-12 w-1/2"></div>
-        <div className="mb-8 w-4/5 md:w-3/5 text-center text-lg">
+        <div className="mb-8 w-4/5 md:w-3/5 text-start text-lg">
           <p>
             You can shape your character by selecting desired traits from each
             of the dropdown lists. Set a selection to 'Random' if you're feeling
@@ -147,13 +147,13 @@ export default function CharacterForm() {
               <div className="flex flex-col gap-y-4">
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80"
                 >
                   Generate
                 </button>
                 <button
                   type="button"
-                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-56 self-center"
+                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center mb-16"
                   onClick={() => router.back()}
                 >
                   Back

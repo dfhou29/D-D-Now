@@ -47,17 +47,17 @@ export default function CreateCampaignForm({ userId }) {
         </div>
 
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 self-center"
+          className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 self-center font-600"
           type="submit"
         >
           CREATE
         </button>
         <button
           type="button"
-          className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center"
+          className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center font-600"
           onClick={() => router.back()}
         >
-          ALL CAMPAIGNS
+          BACK TO ALL CAMPAIGNS
         </button>
       </div>
     </form>

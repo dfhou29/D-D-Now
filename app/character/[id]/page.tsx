@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-samurai.png";
 import Link from "next/link";
 const Pdf = dynamic(() => import("../../components/CharacterPdf"), {
   ssr: false,
@@ -55,7 +55,7 @@ export default async function CharacterDetail({
           Character Sheet
         </p>
         <div className="border-t-2 border-gray-300 my-8 w-1/2 ml-auto mr-auto"></div>
-        <p className="w-84 text-lg text-center mb-8">
+        <p className="w-2/3 text-lg mb-8 ml-auto mr-auto text-gray-700">
           Preview your D&D character sheet as a printable PDF. Below, find
           options to edit or delete your character details.
         </p>
@@ -67,8 +67,8 @@ export default async function CharacterDetail({
             </div>
           </div>
           <Pdf character={character} />
-          <Link href="/character" className="mt-8">
-            <button className="bg-blue-400 hover:bg-blue-700 text-white py-2 px-3 w-48">
+          <Link href="/character" className="mt-16">
+            <button className="bg-blue-400 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
               ALL CHARACTERS
             </button>
           </Link>

@@ -3,7 +3,7 @@ import { sql } from "@vercel/postgres";
 import EditSettingButton from "@/components/EditSettingButton";
 import DeleteSettingButton from "@/components/DeleteSettingButton";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-dragon.png";
 
 export default async function Setting({ params }: { params: { id: number } }) {
   const id = params.id;
@@ -27,7 +27,9 @@ export default async function Setting({ params }: { params: { id: number } }) {
           </h1>
           <div className="border-t-2 border-gray-300 w-1/2 ml-auto mr-auto"></div>
 
-          <div className="min-w-3/5 w-10/12 text-md">{setting.description}</div>
+          <div className="min-w-3/5 w-3/4 text-md leading-7">
+            {setting.description}
+          </div>
           <div className="flex justify-around w-60 gap-x-4">
             <EditSettingButton setting={setting} />
             <DeleteSettingButton setting={setting} />
@@ -35,7 +37,7 @@ export default async function Setting({ params }: { params: { id: number } }) {
 
           <div>
             <Link href={`/campaign/${setting.campaign_id}`}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56 font-600">
                 BACK TO CAMPAIGN
               </button>
             </Link>

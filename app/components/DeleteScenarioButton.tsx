@@ -20,7 +20,7 @@ export default function DeleteScenarioButton({ scenario }) {
   };
   return (
     <button
-      className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 w-24"
+      className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 w-24 font-600"
       onClick={handleClick}
     >
       DELETE

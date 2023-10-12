@@ -143,7 +143,7 @@ export default function NestedObject({ obj, path }) {
                       />
                       <button
                         type="button"
-                        className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 w-20 my-2 "
+                        className="bg-red-500 hover:bg-red-700 text-white py-3 px-4 my-2 font-600 w-24"
                         onClick={(event) => handleDelete(event)}
                       >
                         Delete
@@ -171,7 +171,7 @@ export default function NestedObject({ obj, path }) {
               className="block bg-gray-100 text-gray-700 border border-gray-300 py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
             />
             <button
-              className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-28 self-center lg:w-auto"
+              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 w-28 self-center lg:w-auto font-600"
               type="button"
               onClick={(event) => handleAddSpellLevel(event)}
             >
@@ -220,7 +220,7 @@ export default function NestedObject({ obj, path }) {
           )}
           <div>
             <button
-              className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 my-8"
+              className="bg-red-500 hover:bg-red-700 text-white py-2 px-3 my-8 font-600"
               type="button"
               onClick={(event) => handleDeleteSpellLevel(event)}
             >
@@ -255,7 +255,7 @@ export default function NestedObject({ obj, path }) {
             <button
               type="button"
               onClick={() => handleAddItem(event)}
-              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 self-center w-20 lg:w-auto"
+              className="bg-gray-400 hover:bg-gray-500 text-white py-3 px-4 self-center w-20 lg:w-auto font-600"
             >
               ADD
             </button>

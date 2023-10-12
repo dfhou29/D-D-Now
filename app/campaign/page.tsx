@@ -4,7 +4,7 @@ import { getCookieData } from "@/helper/getCookieData";
 import EditCampaignButton from "@/components/EditCampaignButton";
 import DeleteCampaignButton from "@/components/DeleteCampaignButton";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-warrior.png";
 
 export default async function Campaign() {
   const userId = getCookieData().id;
@@ -30,12 +30,12 @@ export default async function Campaign() {
           {campaigns.map((campaign) => (
             <li key={campaign.id} className="my-6">
               <div className="flex flex-row gap-x-52 border-gray-400 border-2 p-4">
-                <p className="text-gray-700 text-lg font-bold leading-tight self-center w-60">
+                <p className="text-gray-600 text-lg font-bold leading-tight self-center w-60">
                   {campaign.title}
                 </p>
                 <div className="flex justify-around w-auto gap-x-4">
                   <Link href={`/campaign/${campaign.id}`}>
-                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24">
+                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24 font-600">
                       VIEW
                     </button>
                   </Link>
@@ -47,11 +47,16 @@ export default async function Campaign() {
           ))}
         </ul>
         <Link href="/campaign/new">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
             NEW CAMPAIGN
           </button>
         </Link>
       </div>
+      <Link href="/campaign/new">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
+          BACK TO CAMPAIGNS
+        </button>
+      </Link>
     </div>
   );
 }

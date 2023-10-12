@@ -14,7 +14,7 @@ export default function EditSettingButton({ setting }) {
   };
   return (
     <button
-      className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24"
+      className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24 font-600"
       onClick={handleClick}
     >
       EDIT

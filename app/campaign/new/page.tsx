@@ -1,7 +1,7 @@
 import CreateCampaignForm from "@/components/CreateCampaignForm";
 import { getCookieData } from "@/helper/getCookieData";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-warrior.png";
 
 export default function NewCampaign() {
   const userId = getCookieData().id;

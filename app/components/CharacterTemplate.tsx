@@ -6,7 +6,7 @@ import NestedTextInput from "./NestedTextInput";
 import { useRouter } from "next/navigation";
 import { Oval } from "react-loader-spinner";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-samurai.png";
 
 export const CharacterContext = React.createContext<any>(undefined);
 
@@ -215,7 +215,7 @@ export default function CharacterTemplate({ user_id }) {
             onSubmit={handleSubmit}
           >
             {/* basic info section */}
-            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Character Basics</p>
             </div>
             <div className="flex flex-col md:flex-row flex-wrap">
@@ -274,7 +274,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Physical Attributes</p>
             </div>
             {/* appearance */}
@@ -334,7 +334,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Defensive Stats</p>
             </div>
             <div className="flex flex-col md:flex-row flex-wrap">
@@ -366,7 +366,7 @@ export default function CharacterTemplate({ user_id }) {
                 />
               </div>
             </div>
-            <div className="text-gray-600 text-2xl font-semibold mb-2 text-center capitalize my-8">
+            <div className="text-stone-500 font-500 text-2xl mb-2 text-center capitalize my-8">
               <p>Character Insights</p>
             </div>
             <div className="flex flex-col">
@@ -454,7 +454,7 @@ export default function CharacterTemplate({ user_id }) {
               ) : (
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-full"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-3 px-4 w-full font-600 mx-4"
                 >
                   SAVE
                 </button>

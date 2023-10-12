@@ -2,7 +2,7 @@ import Link from "next/link";
 import { sql } from "@vercel/postgres";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-warrior.png";
 
 const DeleteSettingButton = dynamic(
   () => import("../../components/DeleteSettingButton"),
@@ -41,7 +41,7 @@ export default async function Campaign({ params }: { params: { id: number } }) {
           Campaign: {campaign.title}
         </h1>
         <div className="border-t-2 border-gray-300 my-8 w-1/2 ml-auto mr-auto"></div>
-        <h2 className="mb-8 text-3xl font-bold tracking-normal text-gray-600 my-12">
+        <h2 className="mb-8 text-3xl font-700 tracking-normal text-stone-600 my-12">
           Settings
         </h2>
         <ul className="mb-12">
@@ -53,7 +53,7 @@ export default async function Campaign({ params }: { params: { id: number } }) {
                 </p>
                 <div className="flex justify-around w-auto gap-x-4">
                   <Link href={`/campaign/setting/${setting.id}`}>
-                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24">
+                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24 font-600">
                       VIEW
                     </button>
                   </Link>
@@ -69,25 +69,25 @@ export default async function Campaign({ params }: { params: { id: number } }) {
             query: { campaignId: id },
           }}
         >
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 w-64">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 w-56 font-600">
             NEW SETTING
           </button>
         </Link>
         <div className="border-t-2 border-gray-300 my-8 w-1/2"></div>
 
-        <h2 className="mb-8 font-bold tracking-normal text-gray-600 text-3xl my-8">
+        <h2 className="mb-8 font-bold tracking-normal text-stone-600 text-3xl my-8">
           Scenarios
         </h2>
         <ul className="mb-12">
           {scenarios.map((scenario) => (
             <li key={scenario.id} className="my-6">
               <div className="flex flex-row gap-x-52 border-gray-400 border-2 p-4">
-                <p className="text-gray-700 text-lg leading-tight self-center w-80">
+                <p className="text-gray-700 text-lg leading-tight self-center w-80 font-bold">
                   {scenario.title}
                 </p>
                 <div className="flex justify-around w-auto gap-x-4">
                   <Link href={`/campaign/scenario/${scenario.id}`}>
-                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24">
+                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24 font-600">
                       VIEW
                     </button>
                   </Link>
@@ -103,11 +103,16 @@ export default async function Campaign({ params }: { params: { id: number } }) {
             query: { campaignId: id },
           }}
         >
-          <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-64">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56 font-600">
             NEW SCENARIO
           </button>
         </Link>
         <div className="border-t-2 border-gray-300 my-8 w-1/2 ml-auto mr-auto"></div>
+        <Link href="/campaign">
+          <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-56 font-600 mb-36">
+            BACK TO CAMPAIGNS
+          </button>
+        </Link>
       </div>
     </div>
   );
