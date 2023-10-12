@@ -2,8 +2,16 @@ import Link from "next/link";
 import "../styles/globals.css";
 import Image from "next/image";
 import background from "public/background-img-monster.png";
+import { cookies } from "next/headers";
+import { getCookieData } from "@/helper/getCookieData";
 
 export default function Page() {
+  let username = null;
+  const cookieStore = cookies();
+  const token = cookieStore.get("token")?.value || "";
+  if (token) {
+    username = getCookieData().name;
+  }
   return (
     <main className="w-full mt-16 font-poppins overflow-y-hidden">
       <div className="relative overflow-hidden">
@@ -69,31 +77,37 @@ export default function Page() {
               </p>
             </div>
             <div className="border-t-2 border-gray-300 my-12 w-2/3 ml-auto mr-auto"></div>
-            <h3 className=" font-bold tracking-normal text-gray-600 text-3xl text-center">
-              Quick Start
-            </h3>
-            <div className="flex justify-center gap-x-24 mb-48">
-              <div className="flex flex-col justify-center items-center gap-y-2">
-                <h3 className="mb-1 font-600 tracking-normal text-stone-500 text-lg mt-12 text-center">
-                  For Player
+            {username ? (
+              <>
+                <h3 className=" font-bold tracking-normal text-gray-600 text-3xl text-center">
+                  Quick Start
                 </h3>
-                <Link href="/character/new">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
-                    New Character
-                  </button>
-                </Link>
-              </div>
-              <div className="flex flex-col justify-center items-center gap-y-2">
-                <h3 className="mb-1 font-600 tracking-normal text-stone-500 text-lg mt-12 text-center">
-                  For Gamemaster(GM)
-                </h3>
-                <Link href="/campaign/new">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
-                    New Campaign
-                  </button>
-                </Link>
-              </div>
-            </div>
+                <div className="flex justify-center gap-x-24 mb-48">
+                  <div className="flex flex-col justify-center items-center gap-y-2">
+                    <h3 className="mb-1 font-600 tracking-normal text-stone-500 text-lg mt-12 text-center">
+                      For Player
+                    </h3>
+                    <Link href="/character/new">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
+                        New Character
+                      </button>
+                    </Link>
+                  </div>
+                  <div className="flex flex-col justify-center items-center gap-y-2">
+                    <h3 className="mb-1 font-600 tracking-normal text-stone-500 text-lg mt-12 text-center">
+                      For Gamemaster(GM)
+                    </h3>
+                    <Link href="/campaign/new">
+                      <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
+                        New Campaign
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
