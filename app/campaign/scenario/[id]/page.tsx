@@ -3,7 +3,7 @@ import { sql } from "@vercel/postgres";
 import EditScenarioButton from "@/components/EditScenarioButton";
 import DeleteScenarioButton from "@/components/DeleteScenarioButton";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-fighters.png";
 
 export default async function Scenario({ params }: { params: { id: number } }) {
   const id = params.id;
@@ -32,7 +32,7 @@ export default async function Scenario({ params }: { params: { id: number } }) {
           </div>
           <div className="flex flex-col justify-center items-center min-w-3/5 w-10/12 gap-y-4">
             <h2 className="self-start font-bold">Description</h2>
-            <p className="text-md">{scenario.description}</p>
+            <p className="text-md leading-8">{scenario.description}</p>
           </div>
           <div className="flex flex-col justify-center items-center w-10/12 gap-y-4">
             <h2 className="self-start font-bold">Enemies</h2>
@@ -43,7 +43,7 @@ export default async function Scenario({ params }: { params: { id: number } }) {
             <DeleteScenarioButton scenario={scenario} />
           </div>
           <Link href={`/campaign/${scenario.campaign_id}`}>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-56 font-600 mb-16">
               BACK TO CAMPAIGNS
             </button>
           </Link>

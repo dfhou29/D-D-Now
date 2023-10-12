@@ -4,7 +4,7 @@ import { getCookieData } from "@/helper/getCookieData";
 import { sql } from "@vercel/postgres";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-samurai.png";
 
 const DeleteCharacterButton = dynamic(
   () => import("../components/DeleteCharacterButton"),
@@ -18,7 +18,7 @@ export default async function Character() {
   let data = await sql`SELECT * FROM characters WHERE user_id = ${userId};`;
   const { rows: characters } = data;
   return (
-    <div className="relative">
+    <div className="relative ">
       <Image
         src={background}
         alt="background"
@@ -41,7 +41,7 @@ export default async function Character() {
                 </p>
                 <div className="flex justify-around w-auto gap-x-4">
                   <Link href={`/character/${character.id}`}>
-                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24">
+                    <button className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-24 font-600">
                       VIEW
                     </button>
                   </Link>
@@ -52,7 +52,7 @@ export default async function Character() {
           ))}
         </ul>
         <Link href="/character/new">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 w-48">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 w-48 font-600">
             NEW CHARACTER
           </button>
         </Link>

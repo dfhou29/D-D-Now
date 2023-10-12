@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Oval } from "react-loader-spinner";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-fighters.png";
 
 export default function EditScenarioForm() {
   const [title, setTitle] = useState("");
@@ -112,7 +112,7 @@ export default function EditScenarioForm() {
             Scenario Template
           </h2>
         </div>
-        <div className="border-t-2 border-gray-300 mt-4 mb-8 w-1/2"></div>
+        <div className="border-t-2 border-gray-300 mt-4 mb-8"></div>
         <form onSubmit={handleSubmit}>
           <div className="flex-col flex gap-y-8">
             <div className="flex-col flex">
@@ -148,36 +148,38 @@ export default function EditScenarioForm() {
                 className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
               />
             </div>
-
-            <label
-              htmlFor="description"
-              className="text-gray-600 text-md font-bold mb-2 self-start"
-            >
-              Description
-            </label>
-            <textarea
-              name="description"
-              id="description"
-              value={description}
-              onChange={handleDescription}
-              required
-              className="block w-96 h-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-            />
-
-            <label
-              htmlFor="enemies"
-              className="text-gray-600 text-md font-bold mb-2 self-start"
-            >
-              Enemies
-            </label>
-            <input
-              type="text"
-              name="enemies"
-              id="enemies"
-              value={enemies}
-              onChange={handleEnemies}
-              className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
-            />
+            <div className="flex-col flex">
+              <label
+                htmlFor="description"
+                className="text-gray-600 text-md font-bold mb-2 self-start"
+              >
+                Description
+              </label>
+              <textarea
+                name="description"
+                id="description"
+                value={description}
+                onChange={handleDescription}
+                required
+                className="block h-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              />
+            </div>
+            <div className="flex-col flex">
+              <label
+                htmlFor="enemies"
+                className="text-gray-600 text-md font-bold mb-2 self-start"
+              >
+                Enemies
+              </label>
+              <input
+                type="text"
+                name="enemies"
+                id="enemies"
+                value={enemies}
+                onChange={handleEnemies}
+                className="block w-96 bg-white text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+              />
+            </div>
             {loading ? (
               <div className="flex justify-center">
                 <Oval
@@ -197,13 +199,13 @@ export default function EditScenarioForm() {
               <div className="flex flex-col gap-y-4">
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 ml-auto mr-auto w-96"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 ml-auto mr-auto w-96 font-600"
                 >
                   SAVE
                 </button>
                 <button
                   type="button"
-                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 self-center w-96"
+                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 self-center w-96 font-600"
                   onClick={() => router.back()}
                 >
                   BACK

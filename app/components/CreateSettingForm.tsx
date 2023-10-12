@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Oval } from "react-loader-spinner";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-dragon.png";
 
 export default function CreateSettingForm({ id }) {
   const [title, setTitle] = useState("Random");

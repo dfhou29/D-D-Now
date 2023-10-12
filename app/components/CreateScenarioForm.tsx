@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Oval } from "react-loader-spinner";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-fighters.png";
 
 export default function CreateScenarioForm({ id }) {
   const [title, setTitle] = useState("Random");
@@ -159,14 +159,14 @@ export default function CreateScenarioForm({ id }) {
             ) : (
               <>
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-64 self-center"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 self-center font-600"
                   type="submit"
                 >
                   GENERATE
                 </button>
                 <button
                   type="button"
-                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-64 self-center"
+                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center font-600"
                   onClick={() => router.back()}
                 >
                   BACK TO CAMPAIGN
