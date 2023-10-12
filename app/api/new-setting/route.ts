@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  const prompt = `Given the preferences listed below, generate a detailed Dungeons & Dragons setting in the format of a single JSON object. Please limit your response to only be within the expected json format. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Try not to provide repeated or very similar campaign settings, instead provide a unique, creative and detailed setting with an interesting location and overarching objective.
+  const prompt = `Given the preferences listed below, generate a detailed Dungeons & Dragons setting in the format of a single JSON object. Please limit your response to only be within the expected json format. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Try not to provide repeated or very similar campaign settings, instead provide a unique, creative and detailed setting with an interesting location and overarching objective. Please have the setting description be in multiple paragraphs. Use new line escape sequence for new line.
 
 Expected JSON Format:
 {

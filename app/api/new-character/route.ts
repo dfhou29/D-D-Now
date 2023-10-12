@@ -134,7 +134,6 @@ Your Preferences:
   const response = chatCompletion?.choices[0].message.content;
   console.log(response);
   const character = response?.replace(/^Output: \s*/, "");
-
   if (character) {
     return new Response(character, {
       headers: { "Content-Type": "application/json" },

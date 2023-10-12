@@ -30,7 +30,9 @@ export default function CreateSettingForm({ id }) {
     });
 
     const setting = await response.json();
-    console.log(JSON.stringify(setting));
+    const settingJSON = JSON.stringify(setting);
+    console.log("setting JSON: ", settingJSON);
+    console.log("setting Parsed: ", JSON.parse(settingJSON));
     localStorage.removeItem("setting");
     localStorage.setItem("setting", JSON.stringify(setting));
     localStorage.removeItem("campaignId");
@@ -94,14 +96,14 @@ export default function CreateSettingForm({ id }) {
             ) : (
               <>
                 <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 self-center"
+                  className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 self-center font-bold"
                   type="submit"
                 >
                   GENERATE
                 </button>
                 <button
                   type="button"
-                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center"
+                  className="bg-gray-400 hover:bg-gray-500 text-white py-2 px-3 w-80 self-center font-bold"
                   onClick={() => router.back()}
                 >
                   BACK TO CAMPAIGN
