@@ -15,7 +15,7 @@ Expected JSON Format:
   "title": "Scenario title",
   "level": ${level},
   "description": "Scenario description",
-  "enemies": "Scenario enemies",
+  "enemies": "Scenario enemies"
 }
 
 
@@ -35,7 +35,7 @@ Your Preferences:
   const response = chatCompletion?.choices[0].message.content;
   const scenario = response?.replace(/^Output: \s*/, "");
   console.log(response);
-  
+
   if (response) {
     return new Response(scenario, {
       headers: { "Content-Type": "application/json" },

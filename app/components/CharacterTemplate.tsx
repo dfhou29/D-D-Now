@@ -239,7 +239,7 @@ export default function CharacterTemplate({ user_id }) {
               </div>
               <div className="w-full md:w-1/3 p-4">
                 <TextInput
-                  title="Rank"
+                  title="Class"
                   label="rank"
                   onKeyPress={handleKeyPress}
                   required={true}

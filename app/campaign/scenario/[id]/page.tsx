@@ -34,7 +34,7 @@ export default async function Scenario({ params }: { params: { id: number } }) {
             <h2 className="self-start font-bold">Description</h2>
             <p className="text-md leading-8">{scenario.description}</p>
           </div>
-          <div className="flex flex-col justify-center items-center w-10/12 gap-y-4">
+          <div className="flex flex-col justify-center items-start w-10/12 gap-y-4">
             <h2 className="self-start font-bold">Enemies</h2>
             <p className="text-md">{scenario.enemies}</p>
           </div>
@@ -52,3 +52,4 @@ export default async function Scenario({ params }: { params: { id: number } }) {
     </div>
   );
 }
+export const revalidate = 0;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import background from "public/background-img.jpg";
+import background from "public/background-img-warrior.png";
 
 export default function EditCampaignForm() {
   const [title, setTitle] = useState("");
@@ -72,10 +72,10 @@ export default function EditCampaignForm() {
             </div>
 
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 rounded-full w-24"
+              className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-80 font-bold"
               type="submit"
             >
-              Save
+              SAVE
             </button>
           </div>
         </form>

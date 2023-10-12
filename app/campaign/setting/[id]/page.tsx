@@ -10,6 +10,7 @@ export default async function Setting({ params }: { params: { id: number } }) {
   let data = await sql`SELECT * FROM settings WHERE id = ${id} ORDER BY id;`;
   const { rows } = data;
   const setting = rows[0];
+  console.log(setting);
   return (
     <div className="relative">
       <Image
@@ -47,3 +48,4 @@ export default async function Setting({ params }: { params: { id: number } }) {
     </div>
   );
 }
+export const revalidate = 0;

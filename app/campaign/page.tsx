@@ -52,11 +52,6 @@ export default async function Campaign() {
           </button>
         </Link>
       </div>
-      <Link href="/campaign/new">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-3 w-48 font-600">
-          BACK TO CAMPAIGNS
-        </button>
-      </Link>
     </div>
   );
 }

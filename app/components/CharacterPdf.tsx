@@ -985,7 +985,6 @@ const Pdf = ({ character }) => {
               flexDirection: "column",
               position: "absolute",
               top: 450,
-              bottom: 106,
               left: 185,
             }}
           >
