@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   });
 
   const prompt = `
-Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character. Replace placeholders with appropriate values. Output should be pure JSON without any other text.
+Given the preferences listed below, generate a detailed Dungeons & Dragons 5e character sheet in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Always assign an appropriate name when generating a character. Replace placeholders with appropriate values. Please limit your response to only be within the expected json format. If you have any additional context please add it to the notes field. Note that in this sample json we only included 2 placeholders for proficiencies, racial traits, class features and equipments. Please don't be limited to only 2 proficiencies, racial traits, class features and equipments. Instead provide as many proficiencies, racial traits, class features, equipments and spells as required for the generated character to be complete and fully playable. Please limit the spell descriptions to be within 15 words. 
 
 Expected JSON Format:
 {
@@ -32,68 +32,72 @@ Expected JSON Format:
   "hitDice": "Dice Format",
   "proficiencies": {
     "PLACEHOLDER_PROFICIENCY_NAME": {
-      "description": "Description about Proficiency1",
+      "description": "Description about Proficiency1"
     },
     "PLACEHOLDER_PROFICIENCY_NAME": {
-      "description": "Description about Proficiency2",
+      "description": "Description about Proficiency2"
     }
+    ...
   },
   "racialTraits": {
     "PLACEHOLDER_RACIAL_TRAITS_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     },
     "PLACEHOLDER_RACIAL_TRAITS_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     }
+    ...
   },
   "classFeatures": {
     "PLACEHOLDER_CLASS_FEATURE_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     },
     "PLACEHOLDER_CLASS_FEATURE_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     }
+    ...
   },
   "equipments": {
     "PLACEHOLDER_EQUIPMENT_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     },
     "PLACEHOLDER_EQUIPMENT_NAME": {
-      "description": "PLACEHOLDER_DESCRIPTION",
+      "description": "PLACEHOLDER_DESCRIPTION"
     }
+    ...
   },
   "spells": {
     "Cantrips": {
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       }
     },
     "Level "PLACEHOLDER_SPELL_LEVEL"": {
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       }
     },
     "Level "PLACEHOLDER_SPELL_LEVEL"": {
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       },
       "PLACEHOLDER_SPELL_NAME": {
-        "description": "PLACEHOLDER_DESCRIPTION",
+        "description": "PLACEHOLDER_DESCRIPTION"
       }
     },
     ....
@@ -108,7 +112,8 @@ Expected JSON Format:
   "weight": "PLACEHOLDER_WEIGHT",
   "eyes": "PLACEHOLDER_COLOR",
   "skin": "PLACEHOLDER_SKIN",
-  "hair": "PLACEHOLDER_HAIR"
+  "hair": "PLACEHOLDER_HAIR",
+  "notes": "Additional notes"
 }
 
 

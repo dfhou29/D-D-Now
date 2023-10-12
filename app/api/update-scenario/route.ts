@@ -3,11 +3,11 @@ import { NextResponse } from 'next/server';
  
 export async function POST(request: Request) {
   const body = await request.json();
-  const { id, title, level, description } = body;
+  const { id, title, level, description, enemies } = body;
  
   try {
     const result =
-      await sql`UPDATE scenarios SET title = ${title}, level = ${level}, description = ${description} WHERE id = ${id};`;
+      await sql`UPDATE scenarios SET title = ${title}, level = ${level}, description = ${description}, enemies = ${enemies} WHERE id = ${id};`;
   
     return NextResponse.json(
     {

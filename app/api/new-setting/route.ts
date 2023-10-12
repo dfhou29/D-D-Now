@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-    const prompt = `Given the preferences listed below, generate a unique and detailed Dungeons & Dragons setting in the format of a single JSON object. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting.
+    const prompt = `Given the preferences listed below, generate a detailed Dungeons & Dragons setting in the format of a single JSON object. Please limit your response to only be within the expected json format. If any preference is set to 'random', select an appropriate value that fits within the D&D 5e setting. Try not to provide repeated or very similar campaign settings, instead provide a unique, creative and detailed setting with an interesting location and overarching objective.
 
 Expected JSON Format:
 {
@@ -22,7 +22,7 @@ Your Preferences:
   const chatCompletion = await openai.chat.completions.create({
     messages: [{ role: "user", content: prompt }],
     model: "gpt-4",
-    temperature: 0.5,
+    temperature: 1,
     n: 1,
   });
 
